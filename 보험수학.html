@@ -195,6 +195,10 @@ a.card:active{background:var(--blu-bg);}
 <a class="card" onclick="showScreen('s2-5')"><div class="card-no">2-5</div><div class="card-name">선택표</div><div class="card-desc">선택효과·[x]+t·선택/종국표·관계식</div></a>
 <a class="card" onclick="showScreen('s2-종합')"><div class="card-no">2-종합</div><div class="card-name">제2장 종합문제</div><div class="card-desc">2-1~2-5 핵심+기출변형 10문(접이식 정답)</div></a>
 </div>
+  <div class="chap"><span class="cno">제3장</span><span class="cname">생명보험</span></div>
+  <div class="grid">
+<a class="card" onclick="showScreen('s3-1')"><div class="card-no">3-1</div><div class="card-name">보험료계산의 기초</div><div class="card-desc">예정률 3요소·사차/이차익·순/부가/영업·수지상등·APV</div></a>
+</div>
   <footer>보험수학 학습지 · 오프라인 단일파일</footer>
 </div>
 </div>
@@ -3802,6 +3806,197 @@ a.card:active{background:var(--blu-bg);}
   </div>
 
   <footer>학습지 No. 2-종합 · 제2장 생존분포와 생명표 종합문제 · 교재 연습문제 2.1 + 기출 변형(42·48회)</footer>
+</div>
+</div>
+
+<div class="screen" id="s3-1">
+<div class="wrap">
+<a class="backlink" onclick="showScreen('home')">← 목록</a>
+
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="head">
+    <div class="head-main">
+      <p class="head-eyebrow">제3장 생명보험 · I. 기초이론</p>
+      <h1 class="head-title">3.1 보험료계산의 기초</h1>
+    </div>
+    <span class="head-badge">학습지 No. 3-1</span>
+  </div>
+
+  <!-- ════════ 진입 연결 ════════ -->
+  <div class="callout info">
+    <span class="co-label">제3장 시작 · 제1·2장이 여기서 합쳐집니다</span>
+    <p>제1장에서 <strong>이자(현가 $v^n$)</strong>를, 제2장에서 <strong>생존·사망확률 ${}_{n}p_x,\,{}_{n}q_x$</strong>를 배웠습니다. 생명보험료는 이 둘을 <strong>곱해</strong> 계산합니다 — “받을 보험금 × 그 일이 일어날 확률 × 그 시점까지의 현가”. 이 시트는 그 계산을 떠받치는 <strong>용어와 원칙</strong>(예정률·순보험료·수지상등·APV)을 잡습니다. 실제 공식은 다음 <strong>3-2 생존보험</strong>부터 나옵니다.</p>
+  </div>
+
+  <!-- ════════ 3.1.1 예정률 3요소 ════════ -->
+  <div class="section-title"><span class="sno">3.1.1</span><span class="sname">보험료계산의 기초 — 세 가지 예정률</span></div>
+  <div class="card">
+    <p class="lead">보험료는 “미래”를 미리 계산하는 일이라, 미래에 대한 <strong>세 가지 가정(예정률)</strong>이 필요합니다. 이 셋을 묶어 <span class="term">보험료계산의 기초</span>라 합니다.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>예정률</th><th>무엇을 가정</th><th>쓰이는 곳</th></tr></thead>
+        <tbody>
+          <tr><td><span class="term">예정사망률</span></td><td>가입자가 언제 사망/생존할지 (생명표의 사망률)</td><td>보험금 지급 확률</td></tr>
+          <tr><td><span class="term">예정이율</span></td><td>모은 보험료가 굴어날 이자율</td><td>현가 계산 $v^n$</td></tr>
+          <tr><td><span class="term">예정사업비율</span></td><td>보험 운영에 드는 경비 (보험금·보험료의 일정 비율)</td><td>부가보험료</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout info">
+      <span class="co-label">왜 예정률을 “보수적으로” 잡나</span>
+      <p>생명보험은 수십 년 장기계약이라, 미래가 가정과 어긋나도 회사가 버틸 수 있게 <strong>안전하게(보수적으로)</strong> 잡습니다. 방향이 핵심입니다 — <span class="hl">사망보험은 예정사망률을 실제보다 약간 <strong>높게</strong>, 예정이율은 실제보다 약간 <strong>낮게</strong>, 예정사업비율은 약간 <strong>높게</strong></span>. 모두 “보험료를 넉넉히 받는” 방향입니다. 비유: 폭우를 대비해 우산을 좀 크게 챙기는 것.</p>
+    </div>
+  </div>
+
+  <!-- ════════ 3.1.2 사차익·이차익 ════════ -->
+  <div class="section-title"><span class="sno">3.1.2</span><span class="sname">예정과 실제의 차이 — 사차익·이차익</span></div>
+  <div class="card">
+    <p class="lead">예정률은 어디까지나 가정이라, 실제와 다르게 나타납니다. 그 차이에서 손익이 생깁니다.</p>
+    <div class="def">
+      <p class="def-label">정의 · 사차익(死差益)·이차익(利差益)</p>
+      <p class="def-text"><strong>사차익</strong>: 실제 사망률이 예정사망률보다 <strong>낮을</strong> 때(사망보험), 보험금을 덜 줘서 남는 잉여. (반대는 사차손)</p>
+      <p class="def-text"><strong>이차익</strong>: 실제 이자가 예정이자보다 <strong>많을</strong> 때 생기는 잉여. (반대는 이차손)</p>
+    </div>
+    <p class="muted">예정이율을 시중금리보다 <strong>낮게</strong> 잡으니(보수적), 보통 실제 이자가 더 많아 이차익이 나는 게 일반적입니다.</p>
+    <div class="callout warn">
+      <span class="co-label">사차익 ↔ 이차익 혼동 주의</span>
+      <p>둘 다 “예정과 실제의 차이”지만 <strong>출처가 다릅니다</strong>: 사차익은 <strong>사망률</strong>에서, 이차익은 <strong>이자율</strong>에서. “사(死)=사망, 이(利)=이자”로 한자를 기억하세요. 사망보험에서 <strong>실제 사망이 적어야</strong> 사차익(보험금 덜 나감), <strong>실제 이자가 많아야</strong> 이차익입니다.</p>
+    </div>
+  </div>
+
+  <!-- ════════ 3.1.3 순·부가·영업보험료 ════════ -->
+  <div class="section-title"><span class="sno">3.1.3</span><span class="sname">순보험료·부가보험료·영업보험료</span></div>
+  <div class="card">
+    <p class="lead">세 예정률 중 <strong>무엇으로 계산했느냐</strong>에 따라 보험료를 나눕니다.</p>
+    <div class="def">
+      <p class="def-label">정의 · 보험료의 구성</p>
+      <p class="def-text"><span class="term">순보험료(net premium)</span> = 예정사망률 + 예정이율로 계산한 부분(보험금 지급용).</p>
+      <p class="def-text"><span class="term">부가보험료(loading)</span> = 예정사업비율로 계산한 부분(경비용).</p>
+      <div class="eqrow"><span>$$ \text{순보험료} + \text{부가보험료} = \text{영업보험료} $$</span></div>
+      <p class="def-text"><span class="term">영업보험료(gross premium)</span> = 계약자가 실제로 내는 보험료.</p>
+    </div>
+    <div class="callout info">
+      <span class="co-label">이 책의 범위 (중요)</span>
+      <p>제3~6장은 <strong>순보험료만</strong> 다룹니다. 별도 언급이 없으면 “보험료 = 순보험료”입니다. 부가·영업보험료는 제7장(2차 범위). 그러니 지금은 <strong>경비는 잊고 보험금과 이자·확률만</strong> 생각하면 됩니다.</p>
+    </div>
+    <h3>납입 방식에 따른 용어</h3>
+    <p class="muted">순보험료를 <strong>어떻게 내느냐</strong>로도 부릅니다. 계약 시 한 번에 = <span class="term">일시납순보험료(NSP, net single premium)</span>. 여러 번 나눠 = 분할납순보험료. 그중 매회 같은 금액이면 <span class="term">평준순보험료</span>, 특히 1년에 한 번이면 <span class="term">연납평준순보험료</span>. 위첨자·기호는 3-2 이후 차차 나옵니다.</p>
+  </div>
+
+  <!-- ════════ 3.1.4 수지상등·APV ════════ -->
+  <div class="section-title"><span class="sno">3.1.4</span><span class="sname">수지상등의 원칙과 보험수리적 현가(APV)</span></div>
+  <div class="card">
+    <p class="lead">보험료를 “얼마로 정할까”의 답이 바로 이 원칙입니다. <span class="term">수지상등(收支相等)의 원칙</span>: 계약시점에서 <strong>나갈 돈(보험금)의 현가</strong>와 <strong>들어올 돈(보험료)의 현가</strong>가 같아야 한다.</p>
+
+    <!-- 시각화: 천칭(수지상등) -->
+    <div class="tw">
+      <table>
+        <thead><tr><th>지출 (회사 → 계약자)</th><th class="rt">＝</th><th>수입 (계약자 → 회사)</th></tr></thead>
+        <tbody>
+          <tr><td>보험금 지급의 <strong>APV</strong></td><td class="rt">＝</td><td>보험료 납입의 <strong>APV</strong></td></tr>
+          <tr><td>일시납이면 → <strong>NSP</strong></td><td class="rt">＝</td><td>분할납이면 → 평준보험료들의 APV</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tl-cap">계약 시점에서 두 접시가 균형 — 이것이 보험료 결정의 출발점.</p>
+
+    <div class="def">
+      <p class="def-label">정의 · 보험수리적 현가 (APV)</p>
+      <p class="def-text"><span class="term">보험수리적 현가(Actuarial Present Value)</span>란 이자율($v^n$)뿐 아니라 <strong>사망률·생존율까지 함께 고려</strong>한 현가입니다.</p>
+      <div class="eqrow"><span>$$ \text{APV}=\underbrace{(\text{보험금})}_{\text{금액}}\times\underbrace{(\text{지급될 확률})}_{\text{생존·사망률}}\times\underbrace{v^{n}}_{\text{현가}} $$</span></div>
+    </div>
+    <div class="callout warn">
+      <span class="co-label">‘보통 현가’와 ‘보험수리적 현가’의 차이</span>
+      <p>1장의 현가 $v^n$은 “돈이 <strong>확실히</strong> 들어올 때”의 할인입니다. 보험은 “그 사람이 <strong>살아 있어야/사망해야</strong>” 지급되니, 현가에 <strong>그 확률까지 곱</strong>해야 공정합니다. 그래서 APV는 보통 현가보다 작습니다(확률 $\le 1$). 다음 시트의 ${}_{n}E_x=v^n\,{}_{n}p_x$가 바로 이 APV의 첫 예입니다.</p>
+    </div>
+  </div>
+
+  <!-- ════════ 예제 ════════ -->
+  <div class="section-title"><span class="sno">3.1.5</span><span class="sname">개념 확인 예제</span></div>
+  <!-- 출처: 창작 (§1 개념 — 교재 §1엔 예제 없음, 수지상등·APV 개념 정착용) -->
+  <div class="example">
+    <div class="ex-head"><span class="ex-tag">예제</span><span class="ex-id">3-1 · 수지상등과 APV</span></div>
+    <p class="ex-q">어떤 사망보험에서 보험금 지급(지출)의 보험수리적 현가가 $250$원으로 계산되었다. (a) 이 보험을 일시납으로 가입할 때의 순보험료(NSP)는? (b) 그 값이 단순한 현가가 아니라 ‘보험수리적’ 현가인 이유는?</p>
+    <details class="soln">
+      <summary>풀이 펼치기</summary>
+      <div class="soln-body">
+        <p class="prob-hint" style="margin:0 0 10px;"><strong>전략</strong> · 수지상등 — (지출 APV)=(수입 APV); 일시납이면 수입은 NSP 하나. APV는 이자 $v^n$에 지급확률까지 곱한 현가.</p>
+        <div class="step"><span class="n">a</span><span>수지상등의 원칙: (지출 APV) = (수입 APV). 일시납이면 수입은 NSP 한 번뿐이므로 NSP = 지출 APV = $250$원.</span></div>
+        <div class="step"><span class="n">b</span><span>보험금은 “피보험자가 사망해야” 나가므로, 단순 $v^n$ 할인이 아니라 <strong>그 사망확률까지 곱</strong>한 현가다 — 그래서 보험수리적 현가(APV)라 부른다.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">(a) NSP $=250$원　(b) 이자 + 사망(생존)확률을 함께 반영했기 때문</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ════════ 연습문제 ════════ -->
+  <div class="section-title"><span class="sno">3.1.6</span><span class="sname">직접 풀어 보기</span></div>
+
+  <!-- 출처: 창작 (예정률 방향 — 보수적 설정 개념) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 1.</span><span class="prob-meta">예정률 방향</span></div>
+    <p class="prob-q">사망보험의 보험료를 보수적(안전)으로 산출하려 한다. 예정사망률·예정이율을 각각 실제 예상치보다 높게 잡아야 하는가, 낮게 잡아야 하는가?</p>
+    <p class="prob-hint">힌트: “보험료를 넉넉히 받는” 방향. 사망보험은 사망이 많을수록 지출↑, 이자가 적을수록 현가↑.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <p class="prob-hint" style="margin:0 0 10px;"><strong>전략</strong> · 보수적 설정 = 보험료가 부족해지지 않게 지출을 크게 보는 방향 — 예정사망률 $\uparrow$, 예정이율 $\downarrow$.</p>
+        <div class="step"><span class="n">1</span><span>예정사망률: 실제보다 <strong>높게</strong>(사망 많다고 보면 보험금 지출을 크게 잡음).</span></div>
+        <div class="step"><span class="n">2</span><span>예정이율: 실제보다 <strong>낮게</strong>(이자가 적다고 보면 현가가 커져 보험료를 넉넉히 받음).</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">예정사망률 ↑(높게), 예정이율 ↓(낮게)</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 창작 (사차익/이차익 판별) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 2.</span><span class="prob-meta">사차익·이차익 판별</span></div>
+    <p class="prob-q">사망보험에서 (가) 실제 사망률이 예정사망률보다 낮았다, (나) 실제 운용이자가 예정이율보다 높았다. 각각 어떤 이익이 생기는가?</p>
+    <p class="prob-hint">힌트: 사(死)=사망에서, 이(利)=이자에서.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <p class="prob-hint" style="margin:0 0 10px;"><strong>전략</strong> · 사($死$)는 사망률에서, 이($利$)는 이자율에서 나는 차익 — 사망보험은 실제 사망이 적을수록 사차익.</p>
+        <div class="step"><span class="n">가</span><span>실제 사망이 예정보다 적음 → 보험금이 덜 나감 → <strong>사차익</strong>.</span></div>
+        <div class="step"><span class="n">나</span><span>실제 이자가 예정보다 많음 → 자산이 더 불어남 → <strong>이차익</strong>.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">(가) 사차익　(나) 이차익</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 창작 (순+부가=영업 산술) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 3.</span><span class="prob-meta">순·부가·영업</span></div>
+    <p class="prob-q">어떤 계약의 영업보험료가 연 $100$만원이고 부가보험료가 $18$만원이다. 순보험료는 얼마인가?</p>
+    <p class="prob-hint">힌트: 순 + 부가 = 영업.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <p class="prob-hint" style="margin:0 0 10px;"><strong>전략</strong> · 순 $+$ 부가 $=$ 영업이므로 순 $=$ 영업 $-$ 부가.</p>
+        <div class="step"><span class="n">1</span><span>순보험료 $=100-18=82$만원.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$82$만원</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 창작 (변별 — 수지상등에서 등치되는 두 APV) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 4.</span><span class="prob-meta">변별 · 수지상등</span></div>
+    <p class="prob-q">수지상등의 원칙에서 “같다”고 놓는 두 값은 무엇과 무엇인가? 또 일시납의 경우 수입 쪽은 무엇으로 줄어드는가?</p>
+    <p class="prob-hint">힌트: 지출 = 보험금, 수입 = 보험료. 모두 계약시점 APV로.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <p class="prob-hint" style="margin:0 0 10px;"><strong>전략</strong> · 수지상등: 지출(보험금) APV $=$ 수입(보험료) APV, 모두 계약시점 기준. 일시납이면 수입 $=$ NSP.</p>
+        <div class="step"><span class="n">1</span><span>(보험금 지급의 APV, 지출) = (보험료 납입의 APV, 수입). 둘 다 계약시점 기준.</span></div>
+        <div class="step"><span class="n">2</span><span>일시납이면 수입은 한 번뿐이라 “보험료들의 APV”가 곧 <strong>일시납순보험료(NSP)</strong> 하나로 줄어든다.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">지출 APV = 수입 APV · 일시납이면 수입 = NSP</span></div>
+      </div>
+    </details>
+  </div>
+
+  <footer>학습지 No. 3-1 · 3.1 보험료계산의 기초 · 오창수·김경희 『최신보험수리학』 제3장 I.기초이론 §1</footer>
 </div>
 </div>
 
