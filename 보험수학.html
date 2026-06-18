@@ -185,6 +185,10 @@ a.card:active{background:var(--blu-bg);}
 <a class="card" onclick="showScreen('s1-9')"><div class="card-no">1-9</div><div class="card-name">변동연금 ① 일반식·누가·누감</div><div class="card-desc">Pa+Q항·(Ia)·(Da)·(Ia)+(Da)=(n+1)a</div></a>
 <a class="card" onclick="showScreen('s1-10')"><div class="card-no">1-10</div><div class="card-name">변동연금 ② 증가영구·복합현금흐름</div><div class="card-desc">(Ia)∞=1/id·평준+변동 분해</div></a>
 </div>
+  <div class="chap"><span class="cno">제2장</span><span class="cname">생존분포</span></div>
+  <div class="grid">
+<a class="card" onclick="showScreen('s2-1')"><div class="card-no">2-1</div><div class="card-name">확률의 개념</div><div class="card-desc">상대도수·여사상·합/곱의법칙·조건부·독립</div></a>
+</div>
   <footer>보험수학 학습지 · 오프라인 단일파일</footer>
 </div>
 </div>
@@ -2226,6 +2230,276 @@ a.card:active{background:var(--blu-bg);}
   </div>
 
   <footer>학습지 No. 1-10 · §1.8 변동연금 ② 증가영구·복합현금흐름</footer>
+</div>
+</div>
+
+<div class="screen" id="s2-1">
+<div class="wrap">
+<a class="backlink" onclick="showScreen('home')">← 목록</a>
+
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="head">
+    <div class="head-main">
+      <p class="head-eyebrow">제2장 생존분포와 생명표 · I. 기초이론</p>
+      <h1 class="head-title">2.1 확률의 개념</h1>
+    </div>
+    <span class="head-badge">학습지 No. 2-1</span>
+  </div>
+
+  <!-- ════════ 진입 연결 ════════ -->
+  <div class="callout info">
+    <span class="co-label">제2장 시작 · 1장에서 무엇이 달라지나</span>
+    <p>제1장 이자론은 <strong>확정적인</strong> 세계였습니다 — 1원을 맡기면 $t$년 뒤 얼마가 될지 $a(t)$로 정확히 알 수 있었죠. 이제 제2장은 <strong>불확실한</strong> 세계, 즉 “이 사람이 언제 사망할까”를 다룹니다. 사망 시점은 콕 집어 알 수 없지만 <strong>확률</strong>로는 다룰 수 있습니다. 그 도구를 이 시트에서 정리한 뒤, 바로 다음 <strong>생명표</strong>(2-2)와 생존확률 ${}_{n}p_x$(2-3)로 이어집니다. 여기 나오는 <strong>여사상·곱의 법칙</strong>이 곧 $p_x+q_x=1$, “여러 해 연속 생존 = 매년 생존확률의 곱”의 뿌리입니다.</p>
+  </div>
+
+  <!-- ════════ 2.1.1 확률이란 ════════ -->
+  <div class="section-title"><span class="sno">2.1.1</span><span class="sname">확률이란 — “많이 해보면 드러나는 비율”</span></div>
+  <div class="card">
+    <p class="lead">보험은 <strong>개인</strong>의 사망 시점은 못 맞혀도 <strong>집단</strong>의 평균 사망자수는 꽤 잘 예측합니다. 이 “집단에서 드러나는 규칙성”을 숫자로 붙잡은 것이 <span class="term">확률(probability)</span>입니다.</p>
+
+    <h3>먼저 기호 읽는 법</h3>
+    <p class="muted">$\Pr(A)$는 “<strong>사상(事象, event) $A$가 일어날 확률</strong>”이라고 읽습니다. <strong>사상</strong>은 그냥 “관심 있는 사건” — 예: “20세 남자가 1년 안에 사망한다”가 하나의 사상 $A$입니다. $\Pr$는 probability의 약자일 뿐, 곱하기나 함수가 아니라 “…일 확률”을 뜻하는 이름표입니다.</p>
+
+    <p class="muted">어떤 사상이 $n$번의 기회 중 $m$번 일어난 것이 관찰됐다면, 그 비율 $\frac{m}{n}$을 확률의 <strong>추정치</strong>로 씁니다. 시행을 무한히 늘렸을 때 이 비율이 다가가는 값으로 확률을 정의합니다.</p>
+
+    <div class="def">
+      <p class="def-label">정의 · 확률 (상대도수 정의)</p>
+      <p class="def-text">사상이 $n$번 중 $m$번 일어났다면, 그 확률은</p>
+      <div class="eqrow">
+        <span>$$ p = \lim_{n\to\infty}\frac{m}{n} $$</span>
+        <span class="eqno">(2.1.1.1)</span>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <span class="co-label">작은 수로 만져보기</span>
+      <p>동전을 던져 앞면 비율을 적어 봅니다. 5번 던져 앞면 1번 → $\frac{1}{5}=0.2$, 20번에 11번 → $0.55$, 1000번에 503번 → $0.503$… 던질수록 $0.5$로 <strong>좁혀집니다</strong>. 또 20세 남자 $100{,}000$명 중 다음 해 $162$명이 사망했다면 사망확률 추정치는 $\frac{162}{100000}=0.00162$입니다.</p>
+    </div>
+
+    <p class="muted">이렇게 $n$이 커질수록 표본의 비율 $\frac{m}{n}$이 실제 확률로 수렴하는 현상을 <span class="term">대수의 법칙(the law of large numbers)</span>이라 합니다. 보험회사가 가입자가 많을수록(=$n$이 클수록) 사망률 예측이 정확해지는 이유가 바로 이것입니다.</p>
+
+    <div class="callout warn">
+      <span class="co-label">확률은 항상 0과 1 사이</span>
+      <p>$m$은 $0$과 $n$ 사이이므로 어떤 확률도 $0 \le \Pr(A) \le 1$입니다. 확실히 일어나면 $1$, 절대 안 일어나면 $0$. 계산 결과가 음수거나 1을 넘으면 어딘가 틀린 것입니다.</p>
+    </div>
+  </div>
+
+  <!-- ════════ 2.1.2 기본 법칙 ════════ -->
+  <div class="section-title"><span class="sno">2.1.2</span><span class="sname">확률의 기본 법칙 — 여사상과 합</span></div>
+  <div class="card">
+    <h3>(a) 여사상의 확률법칙</h3>
+    <p class="muted">사상 $A$가 일어나지 <strong>않는</strong> 경우를 $A$의 <span class="term">여사상(餘事象, complement)</span>이라 하고 $A^{c}$로 씁니다(“$A$ 컴플리먼트”라 읽습니다). 일어나거나 안 일어나거나 둘 중 하나뿐이므로, 두 확률을 더하면 1입니다.</p>
+    <div class="def">
+      <p class="def-label">정의 · 여사상의 법칙</p>
+      <div class="eqrow">
+        <span>$$ \Pr(A^{c}) = 1 - \Pr(A) $$</span>
+        <span class="eqno">(2.1.1.2)</span>
+      </div>
+    </div>
+    <p class="muted">예: $A$ = “20세 남자가 1년 안에 사망”. $\Pr(A)=0.1$이면 “사망하지 않을(=생존할)” 확률은 $\Pr(A^{c})=1-0.1=0.9$. <span class="hl">이게 바로 다음 시트의 $p_x + q_x = 1$ — 생존확률 + 사망확률 = 1 — 의 원형입니다.</span></p>
+
+    <h3>(b) 합의 일반법칙</h3>
+    <p class="muted">두 사상 중 <strong>적어도 하나</strong>가 일어날 확률, 즉 $\Pr(A\cup B)$($A$ 합집합 $B$, “$A$ 또는 $B$”)를 구할 때는 단순히 더하면 안 됩니다. $A$에도 속하고 $B$에도 속하는 부분 $A\cap B$($A$ 교집합 $B$, “$A$ 그리고 $B$”)를 <strong>두 번</strong> 세게 되므로, 한 번 빼 줍니다.</p>
+    <div class="def">
+      <p class="def-label">정의 · 합의 일반법칙</p>
+      <div class="eqrow">
+        <span>$$ \Pr(A\cup B) = \Pr(A) + \Pr(B) - \Pr(A\cap B) $$</span>
+        <span class="eqno">(2.1.1.3)</span>
+      </div>
+    </div>
+    <div class="callout info">
+      <span class="co-label">왜 빼나 — 명단 합치기 비유</span>
+      <p>‘축구부’ 명단과 ‘농구부’ 명단을 합쳐 전체 인원을 셀 때, 양쪽에 다 있는 사람(겸업자)을 그냥 더하면 <strong>두 번</strong> 세집니다. 그래서 “축구부 + 농구부 − 겸업자”로 한 번 빼 줘야 정확합니다. $\Pr(A\cap B)$를 빼는 것이 바로 그 겸업자 보정입니다.</p>
+    </div>
+
+    <p class="muted">만약 두 사상이 동시에 일어날 수 없으면 — 즉 $A\cap B=\varnothing$(공집합)이면 — 두 사상을 <span class="term">배반사상(排反, mutually exclusive)</span>이라 합니다. 겹치는 부분이 없으니 뺄 것도 없습니다.</p>
+    <div class="def">
+      <p class="def-label">정의 · 배반사상일 때의 합</p>
+      <p class="def-text">$A\cap B=\varnothing$이면 $\Pr(A\cap B)=0$이므로</p>
+      <div class="eqrow">
+        <span>$$ \Pr(A\cup B) = \Pr(A) + \Pr(B) $$</span>
+        <span class="eqno">(2.1.1.4)</span>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <span class="co-label">흔한 실수 — 교집합 빼는 것 잊기</span>
+      <p>두 사상이 겹칠 수 있는데도 $\Pr(A)+\Pr(B)$로 끝내면 확률이 부풀려져 때로 1을 넘깁니다. <strong>배반인지 먼저 확인</strong>하세요. 배반이 아니면 반드시 $-\Pr(A\cap B)$를 붙입니다.</p>
+    </div>
+  </div>
+
+  <!-- ════════ 2.1.3 조건부확률 ════════ -->
+  <div class="section-title"><span class="sno">2.1.3</span><span class="sname">조건부확률과 곱의 법칙</span></div>
+  <div class="card">
+    <p class="lead">“이미 어떤 정보가 주어졌을 때”의 확률을 <span class="term">조건부확률(conditional probability)</span>이라 합니다. 생존확률은 거의 다 “지금까지 살아 있다는 조건에서 앞으로…”의 형태라, 이 개념이 제2장 전체의 엔진입니다.</p>
+
+    <p class="muted">기호 $\Pr(B \mid A)$는 “<strong>$A$가 일어났다는 조건에서 $B$가 일어날 확률</strong>”이라 읽습니다. 세로막대 $\mid$는 “…라는 조건에서”라는 뜻입니다. 아래 표로 직접 만져 봅시다 — 100명을 성별·연령으로 나눈 표입니다.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>구분</th><th class="rt">30세 미만 $(B_1)$</th><th class="rt">30세 이상 $(B_2)$</th><th class="rt">합계</th></tr></thead>
+        <tbody>
+          <tr><td>남 $(A_1)$</td><td class="rt">15</td><td class="rt">25</td><td class="rt">40</td></tr>
+          <tr><td>여 $(A_2)$</td><td class="rt">20</td><td class="rt">40</td><td class="rt">60</td></tr>
+          <tr><td><strong>합계</strong></td><td class="rt">35</td><td class="rt">65</td><td class="rt">100</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="muted">전체 100명에서 “남자이면서 30세 미만”인 사람은 15명이니 $\Pr(A_1\cap B_1)=\frac{15}{100}$. 그런데 <strong>“남자라는 조건에서”</strong> 30세 미만일 확률은 분모가 전체 100이 아니라 <strong>남자 40명</strong>으로 바뀝니다: $\Pr(B_1\mid A_1)=\frac{15}{40}$. 조건이 주어지면 “세는 모집단”이 그 조건 안으로 좁혀지는 것이 핵심입니다.</p>
+    <div class="eqrow">
+      <span>$$ \Pr(B_1\mid A_1)=\frac{15}{40}=\frac{15/100}{40/100}=\frac{\Pr(A_1\cap B_1)}{\Pr(A_1)} $$</span>
+      <span class="eqno">(2.1.1.5)</span>
+    </div>
+
+    <div class="def">
+      <p class="def-label">정의 · 조건부확률</p>
+      <p class="def-text">$\Pr(A)\neq 0$일 때</p>
+      <div class="eqrow">
+        <span>$$ \Pr(B\mid A)=\frac{\Pr(A\cap B)}{\Pr(A)} $$</span>
+        <span class="eqno">(2.1.1.6)</span>
+      </div>
+    </div>
+
+    <p class="muted">위 정의의 양변에 $\Pr(A)$를 곱하면, 미뤄 두었던 <span class="term">곱의 일반법칙</span>이 나옵니다. “$A$ 그리고 $B$가 함께 일어날 확률 = $A$가 일어날 확률 × ($A$ 다음에) $B$가 일어날 확률”.</p>
+    <div class="def">
+      <p class="def-label">정의 · 곱의 법칙 (두 사상)</p>
+      <div class="eqrow">
+        <span>$$ \Pr(A\cap B)=\Pr(A)\cdot\Pr(B\mid A)=\Pr(B)\cdot\Pr(A\mid B) $$</span>
+        <span class="eqno">(2.1.1.7)</span>
+      </div>
+    </div>
+
+    <p class="muted">사상이 셋, 넷으로 늘어도 같은 방식으로 줄줄이 곱해 나갑니다. $A\cap B=D$로 묶어 $\Pr(D\cap C)=\Pr(D)\Pr(C\mid D)$를 펼치면</p>
+    <div class="eqrow">
+      <span>$$ \Pr(A\cap B\cap C)=\Pr(A)\cdot\Pr(B\mid A)\cdot\Pr(C\mid A\cap B) $$</span>
+      <span class="eqno">(2.1.1.8)</span>
+    </div>
+    <p class="muted">일반적으로 $n$개의 사상이 공동으로 일어날 확률은 — 매 단계마다 “앞이 다 일어났다는 조건에서 다음” 확률을 곱합니다.</p>
+    <div class="eqrow">
+      <span>$$ \Pr(A_1\cap\cdots\cap A_n)=\Pr(A_1)\,\Pr(A_2\mid A_1)\,\Pr(A_3\mid A_1\cap A_2)\cdots\Pr(A_n\mid A_1\cap\cdots\cap A_{n-1}) $$</span>
+      <span class="eqno">(2.1.1.9)</span>
+    </div>
+
+    <div class="callout info">
+      <span class="co-label">이게 왜 생존확률의 핵심인가</span>
+      <p>“0세가 22세까지 생존” = “0→20세 생존 <strong>그리고</strong> 20→21세 생존 <strong>그리고</strong> 21→22세 생존”. 각 단계는 “직전까지 살아 있다는 조건에서 1년 더” 산다는 <strong>조건부</strong> 사건이므로, 곱의 법칙으로 <strong>매년 생존확률을 줄줄이 곱</strong>하면 됩니다. 아래 예제 2가 바로 그 계산입니다.</p>
+    </div>
+  </div>
+
+  <!-- 예제 1: 트럼프 -->
+  <div class="example">
+    <div class="ex-head"><span class="ex-tag">예제</span><span class="ex-id">2.1.1.1 — 곱의 법칙</span></div>
+    <p class="ex-q">52장 트럼프에서 킹은 4장이다. 두 장을 차례로(되돌리지 않고) 뽑을 때 둘 다 킹일 확률은?</p>
+    <details class="soln">
+      <summary>풀이 펼치기</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>첫 장이 킹인 사상을 $A_1$, 둘째 장이 킹인 사상을 $A_2$. 구하는 것은 $\Pr(A_1\cap A_2)$.</span></div>
+        <div class="step"><span class="n">2</span><span>첫 장이 킹일 확률 $\Pr(A_1)=\frac{4}{52}$.</span></div>
+        <div class="step"><span class="n">3</span><span>첫 장이 킹이었다는 조건에서 둘째도 킹: 남은 51장 중 킹은 3장이므로 $\Pr(A_2\mid A_1)=\frac{3}{51}$.</span></div>
+        <div class="eqrow"><span>$$ \Pr(A_1\cap A_2)=\frac{4}{52}\cdot\frac{3}{51}=\frac{12}{2652}=\frac{1}{221} $$</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$\frac{1}{221}\approx 0.00452$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 예제 2: 생명표 사슬 -->
+  <div class="example">
+    <div class="ex-head"><span class="ex-tag">예제</span><span class="ex-id">2.1.1.2 — 생존확률 사슬</span></div>
+    <p class="ex-q">생명표에서 다음 자료를 얻었다($l_x$ = $x$세 생존자수).</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>$x$ (나이)</th><th class="rt">0</th><th class="rt">20</th><th class="rt">21</th><th class="rt">22</th><th class="rt">23</th></tr></thead>
+        <tbody>
+          <tr><td>$l_x$ (생존자수)</td><td class="rt">10,000</td><td class="rt">8,000</td><td class="rt">7,000</td><td class="rt">6,500</td><td class="rt">6,200</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="ex-q">(i) 0세 사람이 20세까지 생존했다는 조건에서, 다음 1년 안에 사망할 확률은?<br>(ii) 0세 사람이 22세까지 생존할 확률은?</p>
+    <details class="soln">
+      <summary>풀이 펼치기</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span><strong>(i)</strong> “20세까지 생존”이 조건이므로 세는 모집단은 20세 생존자 $8{,}000$명. 그중 20→21세 사이 사망자는 $l_{20}-l_{21}=8{,}000-7{,}000=1{,}000$명.</span></div>
+        <div class="eqrow"><span>$$ \frac{1{,}000}{8{,}000}=\frac{1}{8}=0.125 $$</span></div>
+        <div class="step"><span class="n">2</span><span><strong>(ii)</strong> 0→22세 생존 = (0→20 생존) 그리고 (20→21 생존) 그리고 (21→22 생존). 곱의 법칙(식 2.1.1.9)으로 각 조건부 생존확률을 곱한다. 각 단계는 “직전 생존자 대비 다음 해 생존자”의 비율.</span></div>
+        <div class="eqrow"><span>$$ \left(\frac{8{,}000}{10{,}000}\right)\!\left(\frac{7{,}000}{8{,}000}\right)\!\left(\frac{6{,}500}{7{,}000}\right)=\frac{6{,}500}{10{,}000}=0.65 $$</span></div>
+        <div class="step"><span class="n">3</span><span>중간의 $8{,}000$과 $7{,}000$이 약분되어 결국 $\frac{l_{22}}{l_0}$만 남는다. <strong>“여러 해 생존확률의 곱 = 처음 대비 끝의 생존자 비율”</strong> — 다음 시트의 ${}_{n}p_x=\frac{l_{x+n}}{l_x}$가 여기서 미리 보입니다.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">(i) $\frac{1}{8}=0.125$　(ii) $0.65$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ════════ 2.1.4 독립 ════════ -->
+  <div class="section-title"><span class="sno">2.1.4</span><span class="sname">독립사상 — “조건이 확률을 바꾸지 않을 때”</span></div>
+  <div class="card">
+    <p class="lead">사상 $A$와 $B$가 <span class="term">독립(independent)</span>이라는 것은, $A$가 일어났든 말든 $B$의 확률이 <strong>그대로</strong>라는 뜻입니다. 즉 조건이 정보를 더해 주지 않습니다.</p>
+    <p class="muted">예: 동전을 두 번 던질 때 둘째 던지기 결과는 첫째와 무관합니다. 그래서 “첫째가 앞면이라는 조건에서 둘째가 앞면일 확률”은 그냥 “둘째가 앞면일 확률”과 같습니다.</p>
+    <div class="def">
+      <p class="def-label">정의 · 독립사상</p>
+      <p class="def-text">$A,B$가 독립이면 조건이 확률을 바꾸지 않으므로</p>
+      <div class="eqrow">
+        <span>$$ \Pr(B\mid A)=\Pr(B) $$</span>
+        <span class="eqno">(2.1.1.10)</span>
+      </div>
+      <p class="def-text">이를 곱의 법칙(2.1.1.7)에 넣으면 조건부가 사라지고 단순한 곱이 됩니다.</p>
+      <div class="eqrow">
+        <span>$$ \Pr(A\cap B)=\Pr(A)\cdot\Pr(B) $$</span>
+        <span class="eqno">(2.1.1.11)</span>
+      </div>
+      <div class="eqrow">
+        <span>$$ \Pr(A_1\cap A_2\cap\cdots\cap A_n)=\Pr(A_1)\cdot\Pr(A_2)\cdots\Pr(A_n) $$</span>
+        <span class="eqno">(2.1.1.12)</span>
+      </div>
+    </div>
+
+    <div class="callout warn">
+      <span class="co-label">절대 혼동 금지 — 배반 ↔ 독립</span>
+      <p><strong>배반</strong>(2.1.2): 한쪽이 일어나면 다른쪽은 <strong>절대 못</strong> 일어난다 → $\Pr(A\cap B)=0$. 이건 “강한 의존”입니다($A$를 알면 $B$가 확정적으로 불가).<br>
+      <strong>독립</strong>(2.1.4): 한쪽을 알아도 다른쪽 확률이 <strong>안 바뀐다</strong> → $\Pr(A\cap B)=\Pr(A)\Pr(B)$.<br>
+      둘은 <strong>정반대</strong> 개념입니다. $\Pr(A),\Pr(B)$가 모두 양수인데 배반이면, 그 둘은 <strong>독립일 수 없습니다</strong>(곱은 양수인데 교집합은 0이므로). “배반=독립”이라 외우면 시험에서 반드시 틀립니다. 판별은 늘 정의로: 교집합이 0이면 배반, $\Pr(A\cap B)=\Pr(A)\Pr(B)$이면 독립.</p>
+    </div>
+  </div>
+
+  <!-- ════════ 연습문제 ════════ -->
+  <div class="section-title"><span class="sno">2.1.5</span><span class="sname">직접 풀어 보기</span></div>
+
+  <!-- 출처: 창작 (기초 확률은 1차 기출 직접출제 희박 — 생명확률로 잇는 스캐폴딩) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 1.</span><span class="prob-meta">여사상</span></div>
+    <p class="prob-q">60세 남자가 앞으로 1년 안에 사망할 확률이 $0.03$이다. 이 사람이 1년간 생존할 확률은?</p>
+    <p class="prob-hint">힌트: 생존과 사망은 서로 여사상. 식 (2.1.1.2).　<strong>답: $0.97$</strong></p>
+  </div>
+
+  <!-- 출처: 창작 (교재 표 [2.1.1.1] 재사용) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 2.</span><span class="prob-meta">합의 법칙</span></div>
+    <p class="prob-q">표 [2.1.1.1](100명)에서 한 명을 임의로 뽑는다. 그 사람이 <strong>남자이거나 30세 미만</strong>일 확률 $\Pr(A_1\cup B_1)$을 구하시오.</p>
+    <p class="prob-hint">힌트: 남자 40, 30세 미만 35, 둘 다(남자∩30미만) 15. 식 (2.1.1.3).　<strong>답: $\frac{40+35-15}{100}=0.60$</strong></p>
+  </div>
+
+  <!-- 출처: 창작 (배반↔독립 변별 — day-1 인터리빙) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 3.</span><span class="prob-meta">변별 · 배반 vs 독립</span></div>
+    <p class="prob-q">표 [2.1.1.1]에서 한 명을 뽑을 때, 다음 각 짝이 <strong>배반인지 / 독립인지</strong> 정의로 판정하시오.<br>(가) “남자 $A_1$”와 “여자 $A_2$”　(나) “남자 $A_1$”와 “30세 미만 $B_1$”</p>
+    <p class="prob-hint">힌트: 배반? $\Pr(\cap)=0$인지. 독립? $\Pr(\cap)=\Pr\cdot\Pr$인지.　<strong>답: (가) $\Pr(A_1\cap A_2)=0$ → 배반(동시에 남·여 불가), 독립 아님. (나) $\Pr(A_1\cap B_1)=0.15$, $\Pr(A_1)\Pr(B_1)=0.4\times0.35=0.14\neq0.15$ → 배반도 독립도 아님.</strong></p>
+  </div>
+
+  <!-- 출처: 창작 (교재 표 [2.1.1.1] 재사용) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 4.</span><span class="prob-meta">조건부확률</span></div>
+    <p class="prob-q">표 [2.1.1.1]에서 뽑은 사람이 <strong>30세 미만($B_1$)이라는 조건에서</strong>, 그 사람이 여자($A_2$)일 확률 $\Pr(A_2\mid B_1)$을 구하시오.</p>
+    <p class="prob-hint">힌트: 조건이 $B_1$이므로 분모는 30세 미만 35명. 식 (2.1.1.6).　<strong>답: $\frac{20}{35}=\frac{4}{7}\approx0.571$</strong></p>
+  </div>
+
+  <!-- 출처: 창작 (예제 2 자료 재사용 — 곱의 법칙 → npx 다리) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 5.</span><span class="prob-meta">생존 사슬 · ${}_{n}p_x$ 맛보기</span></div>
+    <p class="prob-q">예제 2의 자료에서 0세 사람이 23세까지 생존할 확률을 (i) 곱의 법칙(매 단계 생존확률의 곱)으로, (ii) $\frac{l_{23}}{l_0}$으로 각각 구해 두 값이 같음을 확인하시오.</p>
+    <p class="prob-hint">힌트: 중간 $l$들이 약분된다. 식 (2.1.1.9).　<strong>답: 둘 다 $\frac{6{,}200}{10{,}000}=0.62$</strong></p>
+  </div>
+
+  <footer>학습지 No. 2-1 · 2.1 확률의 개념 · 오창수·김경희 『최신보험수리학』 제2장 I.기초이론 §1</footer>
 </div>
 </div>
 
