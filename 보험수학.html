@@ -2468,35 +2468,77 @@ a.card:active{background:var(--blu-bg);}
   <div class="prob">
     <div class="prob-head"><span class="prob-no">문제 1.</span><span class="prob-meta">여사상</span></div>
     <p class="prob-q">60세 남자가 앞으로 1년 안에 사망할 확률이 $0.03$이다. 이 사람이 1년간 생존할 확률은?</p>
-    <p class="prob-hint">힌트: 생존과 사망은 서로 여사상. 식 (2.1.1.2).　<strong>답: $0.97$</strong></p>
+    <p class="prob-hint">힌트: 생존과 사망은 서로 여사상 — 둘을 더하면 1. 식 (2.1.1.2).</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>사망 사상을 $A$라 하면 생존은 그 여사상 $A^{c}$.</span></div>
+        <div class="step"><span class="n">2</span><span>$\Pr(A^{c})=1-\Pr(A)=1-0.03=0.97$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$0.97$</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- 출처: 창작 (교재 표 [2.1.1.1] 재사용) -->
   <div class="prob">
     <div class="prob-head"><span class="prob-no">문제 2.</span><span class="prob-meta">합의 법칙</span></div>
     <p class="prob-q">표 [2.1.1.1](100명)에서 한 명을 임의로 뽑는다. 그 사람이 <strong>남자이거나 30세 미만</strong>일 확률 $\Pr(A_1\cup B_1)$을 구하시오.</p>
-    <p class="prob-hint">힌트: 남자 40, 30세 미만 35, 둘 다(남자∩30미만) 15. 식 (2.1.1.3).　<strong>답: $\frac{40+35-15}{100}=0.60$</strong></p>
+    <p class="prob-hint">힌트: 그냥 더하면 ‘남자이면서 30세 미만’인 사람이 두 번 세어진다. 식 (2.1.1.3).</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$\Pr(A_1)=\frac{40}{100}$, $\Pr(B_1)=\frac{35}{100}$, 겹치는 ‘남자∩30세 미만’은 15명이므로 $\Pr(A_1\cap B_1)=\frac{15}{100}$.</span></div>
+        <div class="step"><span class="n">2</span><span>겹친 15명을 한 번 빼 준다.</span></div>
+        <div class="eqrow"><span>$$ \Pr(A_1\cup B_1)=\frac{40+35-15}{100}=\frac{60}{100}=0.60 $$</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$0.60$</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- 출처: 창작 (배반↔독립 변별 — day-1 인터리빙) -->
   <div class="prob">
     <div class="prob-head"><span class="prob-no">문제 3.</span><span class="prob-meta">변별 · 배반 vs 독립</span></div>
     <p class="prob-q">표 [2.1.1.1]에서 한 명을 뽑을 때, 다음 각 짝이 <strong>배반인지 / 독립인지</strong> 정의로 판정하시오.<br>(가) “남자 $A_1$”와 “여자 $A_2$”　(나) “남자 $A_1$”와 “30세 미만 $B_1$”</p>
-    <p class="prob-hint">힌트: 배반? $\Pr(\cap)=0$인지. 독립? $\Pr(\cap)=\Pr\cdot\Pr$인지.　<strong>답: (가) $\Pr(A_1\cap A_2)=0$ → 배반(동시에 남·여 불가), 독립 아님. (나) $\Pr(A_1\cap B_1)=0.15$, $\Pr(A_1)\Pr(B_1)=0.4\times0.35=0.14\neq0.15$ → 배반도 독립도 아님.</strong></p>
+    <p class="prob-hint">힌트: 배반? $\Pr(\cap)=0$인지. 독립? $\Pr(\cap)=\Pr\cdot\Pr$인지. 둘은 별개의 질문이다.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">가</span><span>한 사람이 남자이면서 동시에 여자일 수 없으므로 $\Pr(A_1\cap A_2)=0$ → <strong>배반</strong>. 독립이라면 $\Pr(A_1)\Pr(A_2)=0.4\times0.6=0.24$여야 하는데 $0\neq0.24$ → <strong>독립 아님</strong>.</span></div>
+        <div class="step"><span class="n">나</span><span>$\Pr(A_1\cap B_1)=\frac{15}{100}=0.15\neq0$ → 배반 아님. 독립 검사: $\Pr(A_1)\Pr(B_1)=0.4\times0.35=0.14\neq0.15$ → <strong>독립도 아님</strong>(약한 의존).</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">(가) 배반·독립 아님　(나) 배반도 독립도 아님</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- 출처: 창작 (교재 표 [2.1.1.1] 재사용) -->
   <div class="prob">
     <div class="prob-head"><span class="prob-no">문제 4.</span><span class="prob-meta">조건부확률</span></div>
     <p class="prob-q">표 [2.1.1.1]에서 뽑은 사람이 <strong>30세 미만($B_1$)이라는 조건에서</strong>, 그 사람이 여자($A_2$)일 확률 $\Pr(A_2\mid B_1)$을 구하시오.</p>
-    <p class="prob-hint">힌트: 조건이 $B_1$이므로 분모는 30세 미만 35명. 식 (2.1.1.6).　<strong>답: $\frac{20}{35}=\frac{4}{7}\approx0.571$</strong></p>
+    <p class="prob-hint">힌트: 조건이 $B_1$이므로 세는 모집단(분모)이 30세 미만 35명으로 좁혀진다. 식 (2.1.1.6).</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$\Pr(A_2\cap B_1)=\frac{20}{100}$(여자이면서 30세 미만 20명), $\Pr(B_1)=\frac{35}{100}$.</span></div>
+        <div class="eqrow"><span>$$ \Pr(A_2\mid B_1)=\frac{\Pr(A_2\cap B_1)}{\Pr(B_1)}=\frac{20/100}{35/100}=\frac{20}{35}=\frac{4}{7}\approx0.571 $$</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$\frac{4}{7}\approx0.571$</span></div>
+      </div>
+    </details>
   </div>
 
   <!-- 출처: 창작 (예제 2 자료 재사용 — 곱의 법칙 → npx 다리) -->
   <div class="prob">
     <div class="prob-head"><span class="prob-no">문제 5.</span><span class="prob-meta">생존 사슬 · ${}_{n}p_x$ 맛보기</span></div>
     <p class="prob-q">예제 2의 자료에서 0세 사람이 23세까지 생존할 확률을 (i) 곱의 법칙(매 단계 생존확률의 곱)으로, (ii) $\frac{l_{23}}{l_0}$으로 각각 구해 두 값이 같음을 확인하시오.</p>
-    <p class="prob-hint">힌트: 중간 $l$들이 약분된다. 식 (2.1.1.9).　<strong>답: 둘 다 $\frac{6{,}200}{10{,}000}=0.62$</strong></p>
+    <p class="prob-hint">힌트: 0→20, 20→21, 21→22, 22→23 네 구간의 생존확률을 곱한다(식 2.1.1.9). 중간 $l$이 약분된다.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span><strong>(i)</strong> 각 구간 생존확률의 곱:</span></div>
+        <div class="eqrow"><span>$$ \left(\frac{8{,}000}{10{,}000}\right)\!\left(\frac{7{,}000}{8{,}000}\right)\!\left(\frac{6{,}500}{7{,}000}\right)\!\left(\frac{6{,}200}{6{,}500}\right)=\frac{6{,}200}{10{,}000}=0.62 $$</span></div>
+        <div class="step"><span class="n">2</span><span><strong>(ii)</strong> 중간 $l$이 전부 약분되어 $\frac{l_{23}}{l_0}=\frac{6{,}200}{10{,}000}=0.62$. 두 방법이 일치한다 — 다음 시트의 ${}_{n}p_x=\frac{l_{x+n}}{l_x}$가 바로 이것.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">둘 다 $0.62$</span></div>
+      </div>
+    </details>
   </div>
 
   <footer>학습지 No. 2-1 · 2.1 확률의 개념 · 오창수·김경희 『최신보험수리학』 제2장 I.기초이론 §1</footer>
