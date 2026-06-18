@@ -189,6 +189,11 @@ a.card:active{background:var(--blu-bg);}
   <div class="chap"><span class="cno">제2장</span><span class="cname">생존분포</span></div>
   <div class="grid">
 <a class="card" onclick="showScreen('s2-1')"><div class="card-no">2-1</div><div class="card-name">확률의 개념</div><div class="card-desc">상대도수·여사상·합/곱의법칙·조건부·독립</div></a>
+<a class="card" onclick="showScreen('s2-2')"><div class="card-no">2-2</div><div class="card-name">생명표</div><div class="card-desc">lx·dx·px·qx·px+qx=1·ω·욕조곡선·보정이론</div></a>
+<a class="card" onclick="showScreen('s2-3')"><div class="card-no">2-3</div><div class="card-name">생명확률</div><div class="card-desc">npx·nqx·m|nqx·곱의법칙 사슬·관계식</div></a>
+<a class="card" onclick="showScreen('s2-4')"><div class="card-no">2-4</div><div class="card-name">평균여명</div><div class="card-desc">개산 ex·완전 ëx=ex+½(UDD)·정기개산</div></a>
+<a class="card" onclick="showScreen('s2-5')"><div class="card-no">2-5</div><div class="card-name">선택표</div><div class="card-desc">선택효과·[x]+t·선택/종국표·관계식</div></a>
+<a class="card" onclick="showScreen('s2-종합')"><div class="card-no">2-종합</div><div class="card-name">제2장 종합문제</div><div class="card-desc">2-1~2-5 핵심+기출변형 10문(접이식 정답)</div></a>
 </div>
   <footer>보험수학 학습지 · 오프라인 단일파일</footer>
 </div>
@@ -2771,6 +2776,946 @@ a.card:active{background:var(--blu-bg);}
   </div>
 
   <footer>학습지 No. 2-1 · 2.1 확률의 개념 · 오창수·김경희 『최신보험수리학』 제2장 I.기초이론 §1</footer>
+</div>
+</div>
+
+<div class="screen" id="s2-2">
+<div class="wrap">
+<a class="backlink" onclick="showScreen('home')">← 목록</a>
+
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="head">
+    <div class="head-main">
+      <p class="head-eyebrow">제2장 생존분포와 생명표 · I. 기초이론</p>
+      <h1 class="head-title">2.2 생명표</h1>
+    </div>
+    <span class="head-badge">학습지 No. 2-2</span>
+  </div>
+
+  <!-- ════════ 진입 연결 ════════ -->
+  <div class="callout info">
+    <span class="co-label">2-1에서 이어집니다 · 확률을 담는 표</span>
+    <p>2-1에서 사망·생존을 <strong>확률</strong>로 다뤘습니다. 그런데 연령마다 사망확률이 다르니, 이걸 <strong>나이별로 한 장에 정리한 표</strong>가 필요합니다 — 그게 <span class="term">생명표</span>입니다. 보험료·책임준비금이 전부 이 표에서 출발합니다. 이 시트에서 표의 기둥인 $l_x,\,d_x,\,p_x,\,q_x$를 익히면, 다음 <strong>2-3 생명확률</strong>에서 임의의 기간 확률 ${}_{n}p_x$로 확장합니다.</p>
+  </div>
+
+  <!-- ════════ 2.2.1 생명표란 ════════ -->
+  <div class="section-title"><span class="sno">2.2.1</span><span class="sname">생명표란 무엇인가 — 종류</span></div>
+  <div class="card">
+    <p class="lead"><span class="term">생명표(生命表, life table)</span>는 어떤 집단의 <strong>연령별 사망률</strong>에 기초해, 나이가 들수록 사람들이 어떻게 사망·생존하는지를 표로 나타낸 것입니다. 생명보험의 모든 계산(보험료·책임준비금)의 출발점이라 보험수리학에서 가장 기본이 되는 자료입니다.</p>
+    <p class="muted">생명표를 써서 보험료를 매긴다는 것은 <strong>“미래의 사망률이 과거와 비슷할 것”</strong>이라는 가정 위에 서 있습니다. 그래서 과거 관찰자료로 표를 만듭니다.</p>
+
+    <h3>두 종류 — 국민생명표 vs 경험생명표</h3>
+    <p class="muted"><span class="term">국민생명표</span>는 국민 <strong>전체</strong>를 관찰한 통계이고, <span class="term">경험생명표</span>는 <strong>생명보험 가입자</strong>를 관찰한 기록입니다. 둘은 다릅니다.</p>
+    <div class="callout info">
+      <span class="co-label">왜 보험사는 경험생명표를 쓰나 — 역선택</span>
+      <p>보험사는 가입 시 신체검사로 건강한 사람을 받고 허약한 사람을 거릅니다. 게다가 가입자 입장에서도 <strong>허약한 사람은 사망보험을, 건강한 사람은 연금·생존보험을</strong> 고르는 <span class="term">역선택(adverse selection)</span>이 있습니다. 그래서 보험가입자 집단의 사망률은 국민 전체와 달라, 보험사는 자기 경험에 맞는 경험생명표를 씁니다. (우리나라는 1988년 제1회 경험생명표 이후, 2012년 제7회 경험생명표까지 작성·사용)</p>
+    </div>
+  </div>
+
+  <!-- ════════ 2.2.2 구성과 작성 ════════ -->
+  <div class="section-title"><span class="sno">2.2.2</span><span class="sname">생명표의 기둥 — $l_x,\,d_x,\,p_x,\,q_x$</span></div>
+  <div class="card">
+    <p class="lead">생명표는 <strong>출발 인원 한 무리</strong>를 정해 놓고, 나이가 들며 몇 명이 살아남고 몇 명이 죽는지를 추적합니다. 출발 인원을 <span class="term">기초생존자수(radix)</span>라 하며 보통 $100{,}000$ 또는 $1{,}000{,}000$으로 잡습니다.</p>
+
+    <h3>기호 읽는 법 (먼저)</h3>
+    <p class="muted">아래 첨자 $x$는 <strong>나이</strong>입니다.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>기호</th><th>읽는 법 · 뜻</th></tr></thead>
+        <tbody>
+          <tr><td>$l_x$</td><td>“엘 엑스” — 정확히 $x$세까지 <strong>생존</strong>한 사람 수</td></tr>
+          <tr><td>$d_x$</td><td>“디 엑스” — $x$세인 사람이 $x+1$세 전에 <strong>사망</strong>한 수</td></tr>
+          <tr><td>$p_x$</td><td>“피 엑스” — $x$세가 1년간 <strong>생존</strong>할 확률</td></tr>
+          <tr><td>$q_x$</td><td>“큐 엑스” — $x$세가 1년 안에 <strong>사망</strong>할 확률</td></tr>
+          <tr><td>$\omega$</td><td>“오메가” — 생존자가 처음으로 $0$이 되는 나이(표의 끝)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="muted">$x+1$세 생존자는 $x$세 생존자에서 그해 사망자를 뺀 것:</p>
+    <div class="eqrow"><span>$$ l_{x+1}=l_{x}-d_{x} $$</span><span class="eqno">(2.1.2.1)</span></div>
+
+    <div class="def">
+      <p class="def-label">정의 · 1년 생존율·사망률</p>
+      <div class="eqrow"><span>$$ p_{x}=\frac{l_{x+1}}{l_{x}}, \qquad q_{x}=\frac{d_{x}}{l_{x}} $$</span><span class="eqno">(2.1.2.2)·(2.1.2.3)</span></div>
+      <p class="def-text">생존율은 “살아남은 수 ÷ 원래 수”, 사망률은 “죽은 수 ÷ 원래 수”. 둘 다 분모가 $l_x$(그해 출발 인원)입니다.</p>
+    </div>
+
+    <div class="callout info">
+      <span class="co-label">항아리 비유 + 작은 수</span>
+      <p>$x$세 생존자 $l_x$명을 항아리 속 공으로 보면, 흰 공 $l_{x+1}$개(살아남음) + 검은 공 $d_x$개(사망)입니다. 공 하나를 꺼낼 때 흰 공일 확률이 곧 $p_x=\frac{l_{x+1}}{l_x}$입니다. 예: 제7회 경험생명표에서 $l_{50}=96{,}244.38,\ l_{51}=95{,}972.97$이면 $p_{50}=\frac{95{,}972.97}{96{,}244.38}=0.99718$.</p>
+    </div>
+
+    <div class="def">
+      <p class="def-label">관계 · 생존 + 사망 = 1</p>
+      <p class="def-text">$l_{x+1}+d_x=l_x$이므로</p>
+      <div class="eqrow"><span>$$ p_{x}+q_{x}=\frac{l_{x+1}+d_{x}}{l_{x}}=1,\qquad p_x=1-q_x,\quad q_x=1-p_x $$</span><span class="eqno">(2.1.2.4~6)</span></div>
+    </div>
+    <div class="callout info">
+      <span class="co-label">2-1과 연결</span>
+      <p>$p_x+q_x=1$은 “1년 생존”과 “1년 안 사망”이 서로 <strong>여사상</strong>(2-1 식 2.1.1.2)이라는 사실 그 자체입니다. 새 공식이 아니라 여사상 법칙의 생명표 버전입니다.</p>
+    </div>
+
+    <h3>제7회 경험생명표(일부, 男)</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>$x$</th><th class="rt">$l_x$</th><th class="rt">$d_x$</th><th class="rt">$p_x$</th><th class="rt">$q_x$</th><th class="rt">$e_x$</th></tr></thead>
+        <tbody>
+          <tr><td>0</td><td class="rt">100000.00</td><td class="rt">416.00</td><td class="rt">0.99584</td><td class="rt">0.00416</td><td class="rt">79.86</td></tr>
+          <tr><td>1</td><td class="rt">99584.00</td><td class="rt">40.83</td><td class="rt">0.99959</td><td class="rt">0.00041</td><td class="rt">79.19</td></tr>
+          <tr><td>2</td><td class="rt">99543.17</td><td class="rt">32.85</td><td class="rt">0.99967</td><td class="rt">0.00033</td><td class="rt">78.22</td></tr>
+          <tr><td>⋮</td><td class="rt">⋮</td><td class="rt">⋮</td><td class="rt">⋮</td><td class="rt">⋮</td><td class="rt">⋮</td></tr>
+          <tr><td>50</td><td class="rt">96244.38</td><td class="rt">271.41</td><td class="rt">0.99718</td><td class="rt">0.00282</td><td class="rt">31.73</td></tr>
+          <tr><td>51</td><td class="rt">95972.97</td><td class="rt">296.56</td><td class="rt">0.99691</td><td class="rt">0.00309</td><td class="rt">30.82</td></tr>
+          <tr><td>⋮</td><td class="rt">⋮</td><td class="rt">⋮</td><td class="rt">⋮</td><td class="rt">⋮</td><td class="rt">⋮</td></tr>
+          <tr><td>110</td><td class="rt">0.00098</td><td class="rt">0.00098</td><td class="rt">0.00000</td><td class="rt">1.00000</td><td class="rt">0.50</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">$0$세 사망률 $0.00416$을 $l_0=100{,}000$에 적용하면 $d_0=416$, 따라서 $l_1=99{,}584$. 이 과정이 생존자가 $0$이 될 때까지 반복됩니다(제7회(男)는 $\omega=111$). $\omega$는 “인간 최대수명”이 아니라 표 작성 편의상 둔 끝나이입니다. ($e_x$=평균여명은 2-4에서 다룹니다.)</p>
+  </div>
+
+  <!-- 예제 2.1.2.1 -->
+  <div class="example">
+    <div class="ex-head"><span class="ex-tag">예제</span><span class="ex-id">2.1.2.1 — $l_x$와 사망자수의 합</span></div>
+    <p class="ex-q">다음을 증명하고 의미를 설명하시오.<br>(a) $l_{x}=d_{x}+d_{x+1}+\cdots+d_{\omega-1}$　(b) $l_{x}-l_{x+n}=d_{x}+d_{x+1}+\cdots+d_{x+n-1}$</p>
+    <details class="soln">
+      <summary>풀이 펼치기</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$d_x=l_x-l_{x+1}$, $d_{x+1}=l_{x+1}-l_{x+2}$, …, $d_{\omega-1}=l_{\omega-1}-l_{\omega}$를 모두 더한다.</span></div>
+        <div class="step"><span class="n">2</span><span>중간 $l$들이 차례로 약분(망원합)되어 $d_x+\cdots+d_{\omega-1}=l_x-l_{\omega}$. $l_{\omega}=0$이므로 $=l_x$.</span></div>
+        <div class="step"><span class="n">3</span><span><strong>의미:</strong> $x$세 생존자 $l_x$명은 결국 모두 사망하므로, $l_x$는 $x$세 이후 연령별 사망자수의 총합과 같다. (b)도 같은 방식 — $l_x-l_{x+n}$은 $x$~$x+n$세 사이 사망자의 합.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$l_x=\sum_{k\ge x} d_k$ (망원합으로 증명)</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ════════ 2.2.3 사망률 곡선 ════════ -->
+  <div class="section-title"><span class="sno">2.2.3</span><span class="sname">사망률 곡선의 모양 — 욕조 곡선</span></div>
+  <div class="card">
+    <p class="lead">$q_x$를 나이순으로 늘어놓으면 흥미로운 모양이 나옵니다. 제7회 경험생명표(男)의 $q_x$ 일부를 보세요.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>나이 $x$</th><th class="rt">0(영아)</th><th class="rt">1</th><th class="rt">2</th><th class="rt">…</th><th class="rt">50</th><th class="rt">51</th><th class="rt">…</th><th class="rt">109</th></tr></thead>
+        <tbody>
+          <tr><td>$q_x$</td><td class="rt">0.00416</td><td class="rt">0.00041</td><td class="rt">0.00033</td><td class="rt">…</td><td class="rt">0.00282</td><td class="rt">0.00309</td><td class="rt">…</td><td class="rt">0.88481</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">출생 직후($x=0$)에 한 번 높았다가 → 유년기에 <strong>최저</strong>로 떨어지고 → 나이가 들수록 다시 <strong>가파르게 상승</strong>합니다. 이 “처음 높고–가운데 낮고–끝에 치솟는” 모양을 <span class="hl">욕조 곡선(bathtub curve)</span>이라 부릅니다. 영아 사망 위험, 노년 사망 급증이라는 현실을 그대로 보여 줍니다.</p>
+    <div class="callout warn">
+      <span class="co-label">$d_x$와 $q_x$를 혼동하지 마세요</span>
+      <p>$d_x$는 <strong>사람 수</strong>(명), $q_x$는 <strong>비율</strong>(확률)입니다. 고령에서는 생존자 $l_x$가 적어 사망자 수 $d_x$는 작아 보여도, 비율 $q_x$는 1에 가깝게 큽니다. 1-1에서 본 “금액 $I_n$ ↔ 비율 $i_n$” 구분과 같은 함정입니다.</p>
+    </div>
+  </div>
+
+  <!-- ════════ 2.2.4 보정이론 ════════ -->
+  <div class="section-title"><span class="sno">2.2.4</span><span class="sname">보정이론 (graduation) — 거친 관찰치를 다듬기</span></div>
+  <div class="card">
+    <p class="lead"><span class="term">보정(補整, graduation)</span>이란 표본조사로 얻은 <strong>들쭉날쭉한 사망률 관찰치</strong>를, 통계적 추정으로 <strong>매끄럽고 합리적인 값</strong>으로 다듬는 과정입니다.</p>
+    <p class="muted"><strong>왜 필요한가:</strong> 생명표는 일정 기간 표본조사라, 조사시기·표본크기에 따라 오차가 있습니다. 표본이 작으면 신뢰도가 낮고, AIDS 같은 새 질병이나 환경 변화도 반영해야 합니다. 또 각 연령 사망률이 서로 다른 표본에서 <strong>독립적으로</strong> 얻어지다 보니, 예컨대 초추정치에서 69세 사망률이 70세보다 높게 나오는 비상식적 역전이 생길 수 있습니다.</p>
+    <p class="muted"><strong>사전의견(prior opinion):</strong> 우리는 “인접 연령의 사망률은 매끄럽게 이어진다”는 믿음을 가집니다. 보정은 관찰치(초추정치)뿐 아니라 이 사전의견까지 반영해 개정된 추정치를 구한다는 점에서 일반 통계추정과 다릅니다.</p>
+    <div class="callout info">
+      <span class="co-label">두 핵심 축 — 평활도 ↔ 적합도 (상충 관계)</span>
+      <p><strong>평활도(smoothness)</strong>: 곡선이 매끄러운 정도. <strong>적합도(fitness)</strong>: 보정값이 원래 관찰치와 가까운 정도. 이 둘은 <strong>동시에 최대화할 수 없습니다</strong> — 너무 매끄럽게 하면 데이터에서 멀어지고, 데이터에 딱 맞추면 울퉁불퉁해집니다. 상황에 맞게 둘을 조화시키는 것이 보정의 핵심입니다. 평활도 척도로는 차분 제곱합 $\sum_i(\Delta^4 v_i)^2$ 등을 쓰며, 값이 작을수록 더 매끄럽습니다.</p>
+    </div>
+    <p class="muted" style="color:var(--t3);">※ 보정이론은 개념 위주로 1차 직접 계산 출제는 드뭅니다. 평활도↔적합도 상충, 사전의견의 역할만 정리해 두면 충분합니다.</p>
+  </div>
+
+  <!-- ════════ 연습문제 ════════ -->
+  <div class="section-title"><span class="sno">2.2.5</span><span class="sname">직접 풀어 보기</span></div>
+
+  <!-- 출처: 창작 (생명표 기본 정의 점검 스캐폴딩) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 1.</span><span class="prob-meta">$l,d,p,q$ 정의</span></div>
+    <p class="prob-q">$l_{60}=8{,}000$, $d_{60}=200$일 때 $l_{61}$, $p_{60}$, $q_{60}$을 구하고 $p_{60}+q_{60}=1$을 확인하시오.</p>
+    <p class="prob-hint">힌트: $l_{61}=l_{60}-d_{60}$, $p_{60}=\frac{l_{61}}{l_{60}}$, $q_{60}=\frac{d_{60}}{l_{60}}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$l_{61}=8{,}000-200=7{,}800$.</span></div>
+        <div class="step"><span class="n">2</span><span>$p_{60}=\frac{7{,}800}{8{,}000}=0.975$, $q_{60}=\frac{200}{8{,}000}=0.025$.</span></div>
+        <div class="step"><span class="n">3</span><span>$p_{60}+q_{60}=0.975+0.025=1$. (성립)</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$l_{61}=7{,}800$ · $p_{60}=0.975$ · $q_{60}=0.025$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 교재 연습문제 2.1-11 변형 (De Moivre형 선형 생명표) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 2.</span><span class="prob-meta">교재 2.1-11 변형 · 선형 $l_x$</span></div>
+    <p class="prob-q">$l_x=1000\left(1-\frac{x}{105}\right)$일 때 (a) $l_0$, (b) $l_{35}$, (c) $q_{20}$을 구하시오. (사망자수가 나이에 따라 일정하게 줄어드는 De Moivre형 생명표)</p>
+    <p class="prob-hint">힌트: 그대로 대입. $q_{20}=\frac{l_{20}-l_{21}}{l_{20}}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">a</span><span>$l_0=1000(1-0)=1000$.</span></div>
+        <div class="step"><span class="n">b</span><span>$l_{35}=1000\left(1-\frac{35}{105}\right)=1000\left(1-\frac13\right)=666.67$.</span></div>
+        <div class="step"><span class="n">c</span><span>$l_{20}=1000\cdot\frac{85}{105}$, $l_{21}=1000\cdot\frac{84}{105}$. $q_{20}=\frac{l_{20}-l_{21}}{l_{20}}=\frac{85-84}{85}=\frac{1}{85}\approx0.01176$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$l_0=1000$ · $l_{35}\approx666.67$ · $q_{20}=\frac{1}{85}\approx0.0118$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 창작 (예제 2.1.2.1 응용 — 망원합) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 3.</span><span class="prob-meta">사망자수 합</span></div>
+    <p class="prob-q">$l_{x}=900$, $l_{x+3}=600$일 때 $d_x+d_{x+1}+d_{x+2}$의 값을 구하시오.</p>
+    <p class="prob-hint">힌트: 예제 2.1.2.1(b). 연속 구간 사망자 합 $=l_x-l_{x+n}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$d_x+d_{x+1}+d_{x+2}=l_x-l_{x+3}$ (망원합).</span></div>
+        <div class="step"><span class="n">2</span><span>$=900-600=300$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$300$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <footer>학습지 No. 2-2 · 2.2 생명표 · 오창수·김경희 『최신보험수리학』 제2장 I.기초이론 §2</footer>
+</div>
+</div>
+
+<div class="screen" id="s2-3">
+<div class="wrap">
+<a class="backlink" onclick="showScreen('home')">← 목록</a>
+
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="head">
+    <div class="head-main">
+      <p class="head-eyebrow">제2장 생존분포와 생명표 · I. 기초이론</p>
+      <h1 class="head-title">2.3 생명확률</h1>
+    </div>
+    <span class="head-badge">학습지 No. 2-3</span>
+  </div>
+
+  <!-- ════════ 진입 연결 ════════ -->
+  <div class="callout info">
+    <span class="co-label">2-2에서 이어집니다 · 1년에서 임의 기간으로</span>
+    <p>2-2의 $p_x,q_x$는 <strong>딱 1년</strong>짜리였습니다. 이제 “$x$세가 <strong>$n$년</strong> 생존”, “$m$년 살고 그다음 $n$년 안에 사망” 같은 <strong>임의 기간</strong> 확률로 넓힙니다. 도구는 새로운 게 아니라 2-1의 <strong>곱의 법칙·여사상</strong>입니다. 여기서 익히는 ${}_{n}p_x$는 앞으로 보험·연금 현가의 모든 식에 등장하는 핵심 부품입니다.</p>
+  </div>
+
+  <!-- ════════ 2.3.1 npx, nqx ════════ -->
+  <div class="section-title"><span class="sno">2.3.1</span><span class="sname">$n$년 생존확률 ${}_{n}p_x$와 $n$년 내 사망확률 ${}_{n}q_x$</span></div>
+  <div class="card">
+    <h3>기호 읽는 법 (먼저)</h3>
+    <p class="muted">$(x)$는 “$x$세인 사람”을 뜻합니다. 확률 기호의 <strong>왼쪽 아래 작은 $n$</strong>은 “몇 년 동안”인지(기간)를 나타냅니다.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>기호</th><th>읽는 법 · 뜻</th></tr></thead>
+        <tbody>
+          <tr><td>${}_{n}p_x$</td><td>“엔 피 엑스” — $(x)$가 <strong>$n$년간 생존</strong>할 확률</td></tr>
+          <tr><td>${}_{n}q_x$</td><td>“엔 큐 엑스” — $(x)$가 <strong>$n$년 안에 사망</strong>할 확률</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">$n=1$이면 보통 $1$을 생략하고 그냥 $p_x,q_x$로 씁니다(=2-2의 그 기호).</p>
+
+    <div class="def">
+      <p class="def-label">정의 · $n$년 생존·사망확률</p>
+      <div class="eqrow"><span>$$ {}_{n}p_x=\frac{l_{x+n}}{l_x} $$</span><span class="eqno">(2.1.3.1)</span></div>
+      <div class="eqrow"><span>$$ {}_{n}q_x=\frac{l_x-l_{x+n}}{l_x}=1-{}_{n}p_x $$</span><span class="eqno">(2.1.3.2)</span></div>
+      <p class="def-text">생존은 “$n$년 뒤 살아있는 수 ÷ 지금 수”. 사망은 그 여사상이라 $1$에서 빼면 됩니다(2-1 여사상 법칙).</p>
+    </div>
+    <div class="callout info">
+      <span class="co-label">작은 수로 만져보기</span>
+      <p>$l_{30}=1000,\ l_{33}=940$이면 ${}_{3}p_{30}=\frac{940}{1000}=0.94$, ${}_{3}q_{30}=1-0.94=0.06$. “30세가 3년 더 살 확률 94%, 3년 안에 죽을 확률 6%.”</p>
+    </div>
+    <div class="callout info">
+      <span class="co-label">${}_{n}p_x$의 또 다른 해석</span>
+      <p>${}_{n}p_x$는 “$(x)$가 $n$년 생존”이자, 동시에 “$(x)$가 <strong>$x+n$세 이후에 사망</strong>”할 확률입니다 — 같은 사건의 두 표현입니다.</p>
+    </div>
+  </div>
+
+  <!-- ════════ 2.3.2 거치사망확률 ════════ -->
+  <div class="section-title"><span class="sno">2.3.2</span><span class="sname">거치사망확률 ${}_{m|n}q_x$ — 살다가 나중에 사망</span></div>
+  <div class="card">
+    <p class="lead">실무에서 가장 자주 쓰는 형태입니다: “$(x)$가 <strong>$m$년은 무사히 살고</strong>, 그 다음 <strong>$n$년 안에 사망</strong>”할 확률. 기호 ${}_{m|n}q_x$의 세로막대 $|$는 “$m$년 거치(유예) 후”를 뜻합니다.</p>
+
+    <!-- 시각화: 시간선 -->
+    <div class="tl">
+      <div class="tl-track">
+        <div class="tl-cell"><div class="tl-amt">생존</div><div class="tl-node"></div><div class="tl-t">$x$</div></div>
+        <div class="tl-cell"><div class="tl-amt"></div><div class="tl-node"></div><div class="tl-t">$x{+}m$</div></div>
+        <div class="tl-cell"><div class="tl-amt">사망구간</div><div class="tl-node"></div><div class="tl-t">$x{+}m{+}n$</div></div>
+      </div>
+      <p class="tl-cap">$x$ → $x+m$: <strong>$m$년 생존</strong>(사상 $A$) · $x+m$ → $x+m+n$: 이 구간에서 <strong>사망</strong>(사상 $B$). ${}_{m|n}q_x$ = 두 사건이 함께 일어날 확률.</p>
+    </div>
+
+    <div class="def">
+      <p class="def-label">정의 · 거치사망확률</p>
+      <div class="eqrow"><span>$$ {}_{m|n}q_x=\frac{l_{x+m}-l_{x+m+n}}{l_x} $$</span><span class="eqno">(2.1.3.3)</span></div>
+      <p class="def-text">$n=1$이면 $1$을 생략해 ${}_{m|}q_x=\frac{l_{x+m}-l_{x+m+1}}{l_x}=\frac{d_{x+m}}{l_x}$로 씁니다.</p>
+    </div>
+    <p class="muted">특수한 경우를 정리하면: $q_x={}_{0|1}q_x$, ${}_{n}q_x={}_{0|n}q_x$, ${}_{m|}q_x={}_{m|1}q_x$ (식 2.1.3.5~7). 즉 ${}_{m|n}q_x$가 가장 일반형이고, $m=0$이면 그냥 $n$년 내 사망입니다.</p>
+  </div>
+
+  <!-- ════════ 2.3.3 핵심 관계식 ════════ -->
+  <div class="section-title"><span class="sno">2.3.3</span><span class="sname">핵심 관계식 — 곱의 법칙으로 줄줄이</span></div>
+  <div class="card">
+    <p class="lead">생명확률의 거의 모든 식은 2-1의 <strong>곱의 법칙</strong> 하나에서 나옵니다. 외우기보다 “생존을 쪼개 곱한다”는 원리로 이해하세요.</p>
+
+    <div class="def">
+      <p class="def-label">관계 ① · 거치사망 = 차(差)로</p>
+      <div class="eqrow"><span>$$ {}_{m|n}q_x={}_{m}p_x-{}_{m+n}p_x $$</span><span class="eqno">(2.1.3.8)</span></div>
+      <p class="def-text">“$x+m$ 이후 사망” 확률에서 “$x+m+n$ 이후 사망” 확률을 빼면, 그 사이($x+m$~$x+m+n$)에서 사망할 확률만 남습니다.</p>
+    </div>
+
+    <div class="def">
+      <p class="def-label">관계 ② · 거치사망 = 곱(생존 × 그 뒤 사망)</p>
+      <div class="eqrow"><span>$$ {}_{m|n}q_x={}_{m}p_x\cdot{}_{n}q_{x+m} $$</span><span class="eqno">(2.1.3.13)</span></div>
+      <p class="def-text">먼저 $m$년 생존(확률 ${}_{m}p_x$)하고, $x+m$세에 도달한 뒤 그때부터 $n$년 안에 사망(${}_{n}q_{x+m}$). 2-1 곱의 법칙 $\Pr(A\cap B)=\Pr(A)\Pr(B|A)$ 그 자체입니다. $n=1$이면 ${}_{m|}q_x={}_{m}p_x\cdot q_{x+m}$.</p>
+    </div>
+
+    <div class="def">
+      <p class="def-label">관계 ③ · 긴 생존을 쪼개 곱하기</p>
+      <div class="eqrow"><span>$$ {}_{m+n}p_x={}_{m}p_x\cdot{}_{n}p_{x+m}={}_{n}p_x\cdot{}_{m}p_{x+n} $$</span><span class="eqno">(2.1.3.15)</span></div>
+      <div class="eqrow"><span>$$ {}_{n}p_x=p_x\cdot p_{x+1}\cdot p_{x+2}\cdots p_{x+n-1} $$</span><span class="eqno">(2.1.3.16)</span></div>
+      <p class="def-text">$m+n$년 생존 = ($m$년 생존) × (그 뒤 $n$년 생존). 이를 끝까지 쪼개면 “$n$년 생존 = 매년 생존확률의 곱”이 됩니다(2-1 예제의 생명표 사슬과 동일).</p>
+    </div>
+
+    <div class="callout warn">
+      <span class="co-label">분모를 헷갈리지 마세요</span>
+      <p>${}_{m|n}q_x$의 분모는 항상 처음 나이의 $l_x$입니다. 반면 조건부 ${}_{n}q_{x+m}$의 분모는 $l_{x+m}$입니다. 관계 ②에서 ${}_{m}p_x=\frac{l_{x+m}}{l_x}$를 곱하면 분모가 $l_{x+m}$에서 $l_x$로 “복원”되는 것을 식으로 확인해 보세요: $\frac{l_{x+m}}{l_x}\cdot\frac{l_{x+m}-l_{x+m+n}}{l_{x+m}}=\frac{l_{x+m}-l_{x+m+n}}{l_x}$.</p>
+    </div>
+  </div>
+
+  <!-- 예제 2.1.3.1 -->
+  <div class="example">
+    <div class="ex-head"><span class="ex-tag">예제</span><span class="ex-id">2.1.3.1 — 곱의 법칙 응용</span></div>
+    <p class="ex-q">30세와 50세 남자가 동시에 20년간 생존할 확률은 0.4이다. 30세 남자 48,000명 중 40세 전 사망자는 3,000명이다. 40세 남자가 다음 30년 이내에 사망할 확률 ${}_{30}q_{40}$을 구하시오. (사망은 독립)</p>
+    <details class="soln">
+      <summary>풀이 펼치기</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>동시 20년 생존: ${}_{20}p_{30}\cdot{}_{20}p_{50}={}_{40}p_{30}=0.4$ (관계 ③의 한 형태).</span></div>
+        <div class="step"><span class="n">2</span><span>30세→40세: ${}_{10}q_{30}=\frac{3000}{48000}=\frac{1}{16}$, 따라서 ${}_{10}p_{30}=\frac{15}{16}$.</span></div>
+        <div class="step"><span class="n">3</span><span>${}_{40}p_{30}={}_{10}p_{30}\cdot{}_{30}p_{40}$이므로 ${}_{30}p_{40}=\frac{{}_{40}p_{30}}{{}_{10}p_{30}}=\frac{0.4}{15/16}=0.4267$.</span></div>
+        <div class="step"><span class="n">4</span><span>${}_{30}q_{40}=1-{}_{30}p_{40}=1-0.4267=0.5733$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">${}_{30}q_{40}\approx0.5733$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 예제 2.1.3.2 -->
+  <div class="example">
+    <div class="ex-head"><span class="ex-tag">예제</span><span class="ex-id">2.1.3.2 — 사망확률의 합 = 1</span></div>
+    <p class="ex-q">다음을 증명하고 의미를 설명하시오. $\;q_x+p_x\,q_{x+1}+{}_{2}p_x\,q_{x+2}+{}_{3}p_x\,q_{x+3}+\cdots=1$</p>
+    <details class="soln">
+      <summary>풀이 펼치기</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>각 항을 생명표로: ${}_{k}p_x\,q_{x+k}=\frac{l_{x+k}}{l_x}\cdot\frac{d_{x+k}}{l_{x+k}}=\frac{d_{x+k}}{l_x}$.</span></div>
+        <div class="step"><span class="n">2</span><span>전부 더하면 $\frac{d_x+d_{x+1}+d_{x+2}+\cdots}{l_x}=\frac{l_x}{l_x}=1$ (예제 2.1.2.1: 사망자 총합 $=l_x$).</span></div>
+        <div class="step"><span class="n">3</span><span><strong>의미:</strong> ${}_{k}p_x\,q_{x+k}$는 “$(x)$가 $x+k$세와 $x+k+1$세 사이에서 사망”할 확률(${}_{k|}q_x$). 연령별 사망확률을 다 더하면 “언젠가 사망”이고, 사람은 반드시 죽으므로 합은 1.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$\sum_{k\ge0}{}_{k}p_x\,q_{x+k}=1$ (반드시 사망)</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ════════ 연습문제 ════════ -->
+  <div class="section-title"><span class="sno">2.3.4</span><span class="sname">직접 풀어 보기</span></div>
+
+  <!-- 출처: 교재 연습문제 2.1-1 변형 (독립 두 생명) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 1.</span><span class="prob-meta">교재 2.1-1 · 독립 두 생명</span></div>
+    <p class="prob-q">$A$가 $n$년 생존할 확률 0.7, $B$가 $n$년 생존할 확률 0.8, 두 사람의 사망은 독립이다. (a) 둘 다 생존할 확률, (b) 적어도 한 사람이 사망할 확률을 구하시오.</p>
+    <p class="prob-hint">힌트: 독립 → 곱(2-1 식 2.1.1.11). “적어도 한 명 사망”은 “둘 다 생존”의 여사상.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">a</span><span>둘 다 생존 $=0.7\times0.8=0.56$.</span></div>
+        <div class="step"><span class="n">b</span><span>적어도 한 명 사망 $=1-0.56=0.44$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">(a) $0.56$　(b) $0.44$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 교재 연습문제 2.1-2 변형 -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 2.</span><span class="prob-meta">교재 2.1-2 · 생존 사슬</span></div>
+    <p class="prob-q">${}_{10}p_{30}=0.9$, ${}_{10}p_{40}=0.8$일 때 (a) 30세가 50세까지 생존할 확률, (b) 30세가 40~50세 사이에서 사망할 확률, (c) 30세가 40세 전에 사망할 확률을 구하시오.</p>
+    <p class="prob-hint">힌트: (a) ${}_{20}p_{30}={}_{10}p_{30}\cdot{}_{10}p_{40}$. (b) ${}_{10|10}q_{30}={}_{10}p_{30}-{}_{20}p_{30}$. (c) ${}_{10}q_{30}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">a</span><span>${}_{20}p_{30}={}_{10}p_{30}\cdot{}_{10}p_{40}=0.9\times0.8=0.72$.</span></div>
+        <div class="step"><span class="n">b</span><span>${}_{10|10}q_{30}={}_{10}p_{30}-{}_{20}p_{30}=0.9-0.72=0.18$.</span></div>
+        <div class="step"><span class="n">c</span><span>${}_{10}q_{30}=1-{}_{10}p_{30}=0.1$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">(a) $0.72$　(b) $0.18$　(c) $0.1$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 교재 연습문제 2.1-3 변형 -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 3.</span><span class="prob-meta">교재 2.1-3 · 사슬 분해</span></div>
+    <p class="prob-q">한 사람이 25세부터 20년 살고(45세 도달) 다시 20년 더 사는(65세 도달) 전체 확률 ${}_{40}p_{25}=0.7$이고, ${}_{10}p_{25}=0.9$이다. 35세가 65세까지 생존할 확률 ${}_{30}p_{35}$를 구하시오.</p>
+    <p class="prob-hint">힌트: ${}_{40}p_{25}={}_{10}p_{25}\cdot{}_{30}p_{35}$ (관계 ③).</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>${}_{40}p_{25}={}_{10}p_{25}\cdot{}_{30}p_{35}$.</span></div>
+        <div class="step"><span class="n">2</span><span>${}_{30}p_{35}=\frac{{}_{40}p_{25}}{{}_{10}p_{25}}=\frac{0.7}{0.9}=0.7778$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">${}_{30}p_{35}\approx0.778$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 교재 연습문제 2.1-4 변형 -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 4.</span><span class="prob-meta">교재 2.1-4 · 거치사망</span></div>
+    <p class="prob-q">${}_{10}p_{30}=0.8$, ${}_{10}p_{40}=0.7$, ${}_{10}p_{50}=0.6$일 때, 30세가 50~60세 사이에서 사망할 확률 ${}_{20|10}q_{30}$을 구하시오.</p>
+    <p class="prob-hint">힌트: ${}_{20|10}q_{30}={}_{20}p_{30}-{}_{30}p_{30}$. 각 ${}_{n}p_{30}$은 10년 조각의 곱.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>${}_{20}p_{30}={}_{10}p_{30}\cdot{}_{10}p_{40}=0.8\times0.7=0.56$.</span></div>
+        <div class="step"><span class="n">2</span><span>${}_{30}p_{30}={}_{20}p_{30}\cdot{}_{10}p_{50}=0.56\times0.6=0.336$.</span></div>
+        <div class="step"><span class="n">3</span><span>${}_{20|10}q_{30}=0.56-0.336=0.224$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$0.224$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 48회 28번 변형 -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 5.</span><span class="prob-meta">48회 변형 · 거치사망 일정</span></div>
+    <p class="prob-q">모든 $t=0,1,\cdots,9$에 대하여 ${}_{t|}q_x=0.10$일 때(즉 향후 10년간 매년 사망확률이 원래 인원의 10%로 일정), ${}_{3}p_{x+5}$를 구하시오.</p>
+    <p class="prob-hint">힌트: ${}_{n}q_x=\sum_{t=0}^{n-1}{}_{t|}q_x$이므로 ${}_{n}p_x=1-0.1n$. 그리고 ${}_{3}p_{x+5}=\frac{{}_{8}p_x}{{}_{5}p_x}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>${}_{n}p_x=1-{}_{n}q_x=1-0.1n$. 따라서 ${}_{5}p_x=0.5$, ${}_{8}p_x=0.2$.</span></div>
+        <div class="step"><span class="n">2</span><span>${}_{8}p_x={}_{5}p_x\cdot{}_{3}p_{x+5}$이므로 ${}_{3}p_{x+5}=\frac{{}_{8}p_x}{{}_{5}p_x}=\frac{0.2}{0.5}=0.4$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">${}_{3}p_{x+5}=0.40$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 48회 27번 변형 (관계식 변별) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 6.</span><span class="prob-meta">48회 변형 · 변별(관계식)</span></div>
+    <p class="prob-q">$u>0$일 때 ${}_{t}p_x$와 같은 것을 고르시오.<br>(1) ${}_{t|u}q_x-{}_{t+u}p_x$　(2) ${}_{t+u}q_x-{}_{t}q_x+{}_{t+u}p_x$　(3) ${}_{t}q_x-{}_{t+u}q_x+{}_{t}p_{x+u}$　(4) ${}_{t}q_x-{}_{t+u}q_x-{}_{t}p_{x+u}$</p>
+    <p class="prob-hint">힌트: 작은 생명표로 대입해 확인하거나, ${}_{t+u}q_x-{}_{t}q_x={}_{t|u}q_x$, ${}_{t+u}p_x={}_{t}p_x-{}_{t|u}q_x$를 이용.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>(2)를 정리: ${}_{t+u}q_x-{}_{t}q_x={}_{t|u}q_x$이고 ${}_{t+u}p_x={}_{t}p_x-{}_{t|u}q_x$.</span></div>
+        <div class="step"><span class="n">2</span><span>합하면 ${}_{t|u}q_x+({}_{t}p_x-{}_{t|u}q_x)={}_{t}p_x$. (성립)</span></div>
+        <div class="step"><span class="n">3</span><span>검산: $l_x=100,l_{x+t}=90,l_{x+t+u}=80$이면 ${}_{t}p_x=0.9$이고 (2)$=0.2-0.1+0.8=0.9$로 일치.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">(2)</span></div>
+      </div>
+    </details>
+  </div>
+
+  <footer>학습지 No. 2-3 · 2.3 생명확률 · 오창수·김경희 『최신보험수리학』 제2장 I.기초이론 §3</footer>
+</div>
+</div>
+
+<div class="screen" id="s2-4">
+<div class="wrap">
+<a class="backlink" onclick="showScreen('home')">← 목록</a>
+
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="head">
+    <div class="head-main">
+      <p class="head-eyebrow">제2장 생존분포와 생명표 · I. 기초이론</p>
+      <h1 class="head-title">2.4 평균여명</h1>
+    </div>
+    <span class="head-badge">학습지 No. 2-4</span>
+  </div>
+
+  <!-- ════════ 진입 연결 ════════ -->
+  <div class="callout info">
+    <span class="co-label">2-3에서 이어집니다 · 확률에서 “평균 수명”으로</span>
+    <p>2-3에서 “$n$년 생존확률 ${}_{n}p_x$”를 구했습니다. 이제 한 걸음 더 — “$x$세인 사람은 <strong>앞으로 평균 몇 년</strong> 더 살까?”를 계산합니다. 이것이 <span class="term">평균여명</span>이며, 사실은 ${}_{n}p_x$를 전부 더한 값입니다. 단수(1년 미만) 처리 방식에 따라 <strong>개산</strong>과 <strong>완전</strong> 두 가지가 나옵니다.</p>
+  </div>
+
+  <!-- ════════ 2.4.1 개산평균여명 ════════ -->
+  <div class="section-title"><span class="sno">2.4.1</span><span class="sname">개산평균여명 $e_x$ — 단수를 버리는 경우</span></div>
+  <div class="card">
+    <p class="lead"><span class="term">평균여명(expectation of life)</span>이란 $x$세에 도달한 사람이 그 후 생존하는 <strong>연수의 평균</strong>입니다. 그런데 사망자는 보통 “3개월”, “7개월”처럼 1년의 중간에 죽습니다. 이 <strong>단수부분(1년 미만)</strong>을 버리고 “완전히 채운 햇수”만 세는 것이 <span class="term">개산(약산)평균여명 $e_x$</span>입니다(기호 $e_x$, 윗점 없음).</p>
+    <p class="muted">단수를 버리면, $l_x$명이 앞으로 “완전히 사는 총 햇수”는 1년 뒤 생존자 $l_{x+1}$, 2년 뒤 $l_{x+2}$, … 를 모두 더한 것입니다(그림으로는 $l_{x+1}$부터 계단을 쌓은 면적). 이를 $l_x$로 나누면 1인당 평균:</p>
+    <div class="def">
+      <p class="def-label">정의 · 개산평균여명</p>
+      <div class="eqrow"><span>$$ e_x=\frac{l_{x+1}+l_{x+2}+l_{x+3}+\cdots+l_{\omega-1}}{l_x} $$</span><span class="eqno">(2.1.4.1)</span></div>
+    </div>
+    <div class="callout info">
+      <span class="co-label">${}_{n}p_x$의 합으로 보기 (예제 2.1.4.1)</span>
+      <p>분자·분모를 항별로 나누면 $e_x=\frac{l_{x+1}}{l_x}+\frac{l_{x+2}}{l_x}+\cdots=p_x+{}_{2}p_x+{}_{3}p_x+\cdots$. 즉 <span class="hl">개산평균여명 = 매 햇수까지 생존할 확률의 총합</span>입니다. “1년 더 살 확률 + 2년 더 살 확률 + …”을 더하면 평균 생존 햇수가 된다는 직관과 정확히 맞습니다.</p>
+    </div>
+  </div>
+
+  <!-- ════════ 2.4.2 완전평균여명 ════════ -->
+  <div class="section-title"><span class="sno">2.4.2</span><span class="sname">완전평균여명 $\stackrel{\circ}{e}_x$ — 단수를 살리는 경우 (UDD)</span></div>
+  <div class="card">
+    <p class="lead">단수부분까지 고려한 평균여명이 <span class="term">완전평균여명 $\stackrel{\circ}{e}_x$</span>입니다(기호 $e$ 위에 <strong>작은 동그라미 ˚</strong> — “완전”을 뜻하는 표시일 뿐 거듭제곱이 아닙니다). 버린 단수를 도로 더하므로 항상 개산보다 큽니다.</p>
+    <p class="muted">버린 단수를 어떻게 추정할까요? <span class="term">UDD 가정</span>(<strong>U</strong>niform <strong>D</strong>istribution of <strong>D</strong>eaths) — “1년 안의 사망이 그 해 동안 고르게 분포”한다고 봅니다. 예: $d_x=120$명이면 매달 10명씩 사망. 그러면 그 해 사망자들은 평균적으로 <strong>그 해의 한가운데</strong>(약 $\tfrac12$년)까지 살고 죽습니다.</p>
+    <p class="muted">각 연령 구간에서 사망자 $d_{x+k}$가 평균 $\tfrac12$년씩 더 사는 셈이므로, 버린 단수의 총합은 $\tfrac12(d_x+d_{x+1}+\cdots)=\tfrac12 l_x$. 이를 $l_x$로 나눠 더하면:</p>
+    <div class="def">
+      <p class="def-label">정의 · 완전평균여명 (UDD)</p>
+      <div class="eqrow"><span>$$ \stackrel{\circ}{e}_x=e_x+\frac{1}{2} $$</span><span class="eqno">(2.1.4.2)</span></div>
+      <p class="def-text">유도: $\stackrel{\circ}{e}_x=\frac{(l_{x+1}+\cdots)+\tfrac12(d_x+d_{x+1}+\cdots)}{l_x}=e_x+\frac{\tfrac12 l_x}{l_x}=e_x+\tfrac12$.</p>
+    </div>
+    <div class="callout info">
+      <span class="co-label">왜 하필 $+\tfrac12$인가 — 한 줄 직관</span>
+      <p>누구나 결국 사망하고, UDD에서는 사망 시점이 “그 해의 중간”입니다. 그래서 햇수만 세던 것($e_x$)에 사람마다 평균 <strong>반 년</strong>이 더 붙습니다. 그게 $+\tfrac12$입니다.</p>
+    </div>
+    <div class="callout warn">
+      <span class="co-label">$e_x$ vs $\stackrel{\circ}{e}_x$ 혼동 주의</span>
+      <p>윗점이 없으면 <strong>개산</strong>($e_x$, 단수 버림), 윗점 ˚이 있으면 <strong>완전</strong>($\stackrel{\circ}{e}_x$, 단수 살림). UDD에서 둘의 차이는 정확히 $\tfrac12$. 문제에서 어느 쪽을 묻는지 먼저 확인하세요.</p>
+    </div>
+  </div>
+
+  <!-- 예제 2.1.4.1 -->
+  <div class="example">
+    <div class="ex-head"><span class="ex-tag">예제</span><span class="ex-id">2.1.4.1 — $e_x$의 두 표현</span></div>
+    <p class="ex-q">다음을 증명하시오. (a) $e_x=p_x+{}_{2}p_x+{}_{3}p_x+\cdots$　(b) $e_x=p_x(1+e_{x+1})$</p>
+    <details class="soln">
+      <summary>풀이 펼치기</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">a</span><span>$\frac{l_{x+1}}{l_x}+\frac{l_{x+2}}{l_x}+\cdots=p_x+{}_{2}p_x+{}_{3}p_x+\cdots=e_x$ (정의에서 항별로 나눔).</span></div>
+        <div class="step"><span class="n">b</span><span>우변 $=\frac{l_{x+1}}{l_x}\left(1+\frac{l_{x+2}+l_{x+3}+\cdots}{l_{x+1}}\right)=\frac{l_{x+1}}{l_x}+\frac{l_{x+2}+l_{x+3}+\cdots}{l_x}=e_x$.</span></div>
+        <div class="step"><span class="n">3</span><span><strong>(b)의 의미:</strong> $x$세가 평균적으로 사는 햇수는, 일단 1년 더 살고($p_x$) 그 뒤 $x+1$세의 평균여명($e_{x+1}$)을 이어 사는 구조 — 점화식(재귀)으로 평균여명을 한 살씩 이어 계산할 수 있습니다.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$e_x=\sum_{k\ge1}{}_{k}p_x=p_x(1+e_{x+1})$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ════════ 연습문제 ════════ -->
+  <div class="section-title"><span class="sno">2.4.3</span><span class="sname">직접 풀어 보기</span></div>
+
+  <!-- 출처: 교재 연습문제 2.1-9 변형 -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 1.</span><span class="prob-meta">교재 2.1-9 · 표로 $e,\stackrel{\circ}{e}$</span></div>
+    <p class="prob-q">아래 생명표에서 $e_{92}$와 $\stackrel{\circ}{e}_{93}$을 구하시오(모든 연령 UDD 가정).</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>$x$</th><th class="rt">92</th><th class="rt">93</th><th class="rt">94</th><th class="rt">95</th><th class="rt">96</th><th class="rt">97</th><th class="rt">98</th></tr></thead>
+        <tbody><tr><td>$l_x$</td><td class="rt">1000</td><td class="rt">500</td><td class="rt">230</td><td class="rt">92</td><td class="rt">29</td><td class="rt">6</td><td class="rt">0</td></tr></tbody>
+      </table>
+    </div>
+    <p class="prob-hint">힌트: $e_x=\frac{l_{x+1}+l_{x+2}+\cdots}{l_x}$, $\stackrel{\circ}{e}_x=e_x+\tfrac12$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$e_{92}=\frac{l_{93}+l_{94}+l_{95}+l_{96}+l_{97}}{l_{92}}=\frac{500+230+92+29+6}{1000}=\frac{857}{1000}=0.857$.</span></div>
+        <div class="step"><span class="n">2</span><span>$e_{93}=\frac{l_{94}+l_{95}+l_{96}+l_{97}}{l_{93}}=\frac{230+92+29+6}{500}=\frac{357}{500}=0.714$.</span></div>
+        <div class="step"><span class="n">3</span><span>$\stackrel{\circ}{e}_{93}=e_{93}+\tfrac12=0.714+0.5=1.214$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$e_{92}=0.857$ · $\stackrel{\circ}{e}_{93}=1.214$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 44회 27번 변형 -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 2.</span><span class="prob-meta">44회 변형 · UDD 완전여명</span></div>
+    <p class="prob-q">UDD 가정하에 아래 생명표를 이용하여 $\stackrel{\circ}{e}_{90}$을 구하시오.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>$x$</th><th class="rt">90</th><th class="rt">91</th><th class="rt">92</th><th class="rt">93</th><th class="rt">94</th></tr></thead>
+        <tbody><tr><td>$l_x$</td><td class="rt">1100</td><td class="rt">900</td><td class="rt">650</td><td class="rt">350</td><td class="rt">0</td></tr></tbody>
+      </table>
+    </div>
+    <p class="prob-hint">힌트: 먼저 $e_{90}$, 그다음 $+\tfrac12$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$e_{90}=\frac{l_{91}+l_{92}+l_{93}+l_{94}}{l_{90}}=\frac{900+650+350+0}{1100}=\frac{1900}{1100}=1.7273$.</span></div>
+        <div class="step"><span class="n">2</span><span>$\stackrel{\circ}{e}_{90}=1.7273+0.5=2.2273\approx2.23$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$\stackrel{\circ}{e}_{90}\approx2.23$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 42회 28번 변형 (정기개산평균여명) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 3.</span><span class="prob-meta">42회 변형 · 정기개산여명</span></div>
+    <p class="prob-q">모든 나이 $x$에서 $q_x=0.3$이다. 80세 사람의 <strong>3년 정기</strong>개산평균여명 $e_{80:\overline{3}|}$을 구하시오. (정기개산여명 $e_{x:\overline{n}|}=p_x+{}_{2}p_x+\cdots+{}_{n}p_x$ — 앞으로 $n$년까지만 세는 평균여명)</p>
+    <p class="prob-hint">힌트: $q_x=0.3$이면 $p_x=0.7$, ${}_{k}p_{80}=(0.7)^k$. $1.0$이 아니라 3년까지만 합.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$p_x=1-0.3=0.7$, 매년 독립적으로 같으므로 ${}_{k}p_{80}=(0.7)^k$.</span></div>
+        <div class="step"><span class="n">2</span><span>$e_{80:\overline{3}|}={}_{1}p_{80}+{}_{2}p_{80}+{}_{3}p_{80}=0.7+0.49+0.343$.</span></div>
+        <div class="eqrow"><span>$$ =1.533 $$</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$e_{80:\overline{3}|}=1.533$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <footer>학습지 No. 2-4 · 2.4 평균여명 · 오창수·김경희 『최신보험수리학』 제2장 I.기초이론 §4</footer>
+</div>
+</div>
+
+<div class="screen" id="s2-5">
+<div class="wrap">
+<a class="backlink" onclick="showScreen('home')">← 목록</a>
+
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="head">
+    <div class="head-main">
+      <p class="head-eyebrow">제2장 생존분포와 생명표 · I. 기초이론</p>
+      <h1 class="head-title">2.5 선택표</h1>
+    </div>
+    <span class="head-badge">학습지 No. 2-5</span>
+  </div>
+
+  <!-- ════════ 진입 연결 ════════ -->
+  <div class="callout info">
+    <span class="co-label">2-2~2-4에서 이어집니다 · 나이 하나로는 부족할 때</span>
+    <p>지금까지 사망률은 <strong>나이 $x$ 하나</strong>로 정해졌습니다($q_x$). 그런데 방금 보험에 가입한 사람은 신체검사를 통과해 같은 나이라도 더 건강합니다. 그래서 사망률이 나이뿐 아니라 <strong>가입 후 경과 연수</strong>에도 의존하게 됩니다. 이를 다루는 표가 <span class="term">선택표</span>입니다. 계산 자체는 2-3의 곱의 법칙 그대로이고, <strong>기호 읽는 법</strong>만 새로 익히면 됩니다.</p>
+  </div>
+
+  <!-- ════════ 2.5.1 선택효과 ════════ -->
+  <div class="section-title"><span class="sno">2.5.1</span><span class="sname">선택집단과 선택효과</span></div>
+  <div class="card">
+    <p class="lead"><span class="term">선택집단(select group)</span>이란 임의의 집단이 아니라 어떤 선별을 거친 집단입니다 — 신체검사를 통과한 보험가입자, 이민자, 생명연금 구매자 등. 이들은 보통 사람보다 건강하므로 사망률이 더 낮습니다.</p>
+    <p class="muted">그런데 이 <strong>선택효과(낮은 사망률)는 시간이 지날수록 옅어집니다.</strong> 가입 후 5~10년이 지나면 효과가 거의 사라져 보통 사람과 같아집니다. 이렇게 효과가 미치는 기간을 <span class="term">선택기간</span>이라 합니다.</p>
+    <div class="callout info">
+      <span class="co-label">왜 같은 45세라도 사망률이 다른가 — 작은 예</span>
+      <p>30세에 가입해 15년 지난 사람과 35세에 가입해 10년 지난 사람은 둘 다 45세 — 선택효과가 다 사라져 사망률이 같습니다. 하지만 <strong>44세에 가입해 1년 지난</strong> 사람도 45세이지만, 최근 신체검사를 통과해 <strong>사망률이 더 낮습니다.</strong> 나이는 같아도 “가입 후 경과”가 다르기 때문입니다.</p>
+    </div>
+  </div>
+
+  <!-- ════════ 2.5.2 기호와 표 ════════ -->
+  <div class="section-title"><span class="sno">2.5.2</span><span class="sname">선택표·종국표 기호 $[x]+t$</span></div>
+  <div class="card">
+    <h3>기호 읽는 법 (먼저)</h3>
+    <p class="muted"><strong>대괄호 $[x]$</strong>는 “$x$세에 <strong>가입</strong>했다”는 표시이고, <strong>$+t$</strong>는 “가입 후 $t$년 경과”를 뜻합니다.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>기호</th><th>읽는 법 · 뜻</th></tr></thead>
+        <tbody>
+          <tr><td>$q_{[x]+t}$</td><td>$x$세에 가입해 $t$년 지난 사람(현재 나이 $x+t$)의 1년 사망률</td></tr>
+          <tr><td>$q_{x}$ (종국)</td><td>선택효과가 사라진 뒤의 사망률 — <strong>종국표(ultimate table)</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">아래는 선택기간 5년인 선택표·종국표입니다(1,000명당 사망자수 = $q\times1000$). 왼쪽 5개 열은 <strong>선택</strong>, 오른쪽에서 두 번째 열($d_{x+5}$)부터는 <strong>종국표</strong>입니다. 한 행을 오른쪽으로 따라가다 6년째에 종국표로 합류합니다.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>가입 $[x]$</th><th class="rt">1년차</th><th class="rt">2년차</th><th class="rt">3년차</th><th class="rt">4년차</th><th class="rt">5년차</th><th class="rt">6년+ (종국)</th><th class="rt">도달연령</th></tr></thead>
+        <tbody>
+          <tr><td>30</td><td class="rt">0.78</td><td class="rt">0.88</td><td class="rt">0.99</td><td class="rt">1.10</td><td class="rt">1.25</td><td class="rt">1.41</td><td class="rt">35</td></tr>
+          <tr><td>31</td><td class="rt">0.80</td><td class="rt">0.91</td><td class="rt">1.02</td><td class="rt">1.17</td><td class="rt">1.33</td><td class="rt">1.53</td><td class="rt">36</td></tr>
+          <tr><td>32</td><td class="rt">0.82</td><td class="rt">0.94</td><td class="rt">1.08</td><td class="rt">1.24</td><td class="rt">1.44</td><td class="rt">1.68</td><td class="rt">37</td></tr>
+          <tr><td>33</td><td class="rt">0.84</td><td class="rt">0.98</td><td class="rt">1.14</td><td class="rt">1.33</td><td class="rt">1.57</td><td class="rt">1.87</td><td class="rt">38</td></tr>
+          <tr><td>34</td><td class="rt">0.88</td><td class="rt">1.03</td><td class="rt">1.22</td><td class="rt">1.45</td><td class="rt">1.74</td><td class="rt">2.10</td><td class="rt">39</td></tr>
+          <tr><td>35</td><td class="rt">0.92</td><td class="rt">1.10</td><td class="rt">1.33</td><td class="rt">1.61</td><td class="rt">1.95</td><td class="rt">2.36</td><td class="rt">40</td></tr>
+          <tr><td>36</td><td class="rt">0.97</td><td class="rt">1.19</td><td class="rt">1.46</td><td class="rt">1.79</td><td class="rt">2.19</td><td class="rt">2.64</td><td class="rt">41</td></tr>
+          <tr><td>37</td><td class="rt">1.04</td><td class="rt">1.30</td><td class="rt">1.62</td><td class="rt">2.00</td><td class="rt">2.44</td><td class="rt">2.95</td><td class="rt">42</td></tr>
+          <tr><td>38</td><td class="rt">1.13</td><td class="rt">1.44</td><td class="rt">1.80</td><td class="rt">2.22</td><td class="rt">2.72</td><td class="rt">3.28</td><td class="rt">43</td></tr>
+          <tr><td>39</td><td class="rt">1.24</td><td class="rt">1.59</td><td class="rt">1.99</td><td class="rt">2.47</td><td class="rt">3.02</td><td class="rt">3.63</td><td class="rt">44</td></tr>
+          <tr><td>40</td><td class="rt">1.36</td><td class="rt">1.74</td><td class="rt">2.20</td><td class="rt">2.72</td><td class="rt">3.32</td><td class="rt">4.02</td><td class="rt">45</td></tr>
+          <tr><td>41</td><td class="rt">1.48</td><td class="rt">1.91</td><td class="rt">2.41</td><td class="rt">2.99</td><td class="rt">3.67</td><td class="rt">4.45</td><td class="rt">46</td></tr>
+          <tr><td>42</td><td class="rt">1.61</td><td class="rt">2.09</td><td class="rt">2.64</td><td class="rt">3.29</td><td class="rt">4.05</td><td class="rt">4.92</td><td class="rt">47</td></tr>
+          <tr><td>43</td><td class="rt">1.74</td><td class="rt">2.27</td><td class="rt">2.89</td><td class="rt">3.61</td><td class="rt">4.46</td><td class="rt">5.46</td><td class="rt">48</td></tr>
+          <tr><td>44</td><td class="rt">1.87</td><td class="rt">2.46</td><td class="rt">3.16</td><td class="rt">3.97</td><td class="rt">4.93</td><td class="rt">6.06</td><td class="rt">49</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="tl-cap">(자료: James C. H. Anderson, <em>Transactions of Society of Actuaries</em>, XI. 표 [2.1.5.1]) 한 행을 오른쪽으로 5칸 가면 그 행의 “종국” 칸은 도달연령 $x+5$의 사망률 $q_{x+5}$입니다.</p>
+
+    <div class="callout warn">
+      <span class="co-label">$q_{[37]+2}$와 $q_{39}$는 다르다 (선택효과)</span>
+      <p>둘 다 39세의 사망률이지만 — $q_{[37]+2}=0.00162$(37세 가입, 2년 경과)는 <strong>선택효과가 남아</strong> 더 낮고, $q_{39}=0.00210$(34세 가입자가 5년 지나 도달, =종국)은 더 높습니다. 일반적으로 같은 나이에서 $\;q_{[x]}<q_{[x-1]+1}<q_{[x-2]+2}<\cdots$ — 최근 가입자일수록 사망률이 낮습니다.</p>
+    </div>
+
+    <div class="def">
+      <p class="def-label">관계 · 선택표 (선택기간 5년, $t=0,1,2,3,4$)</p>
+      <div class="eqrow"><span>$$ l_{[x]+t}-d_{[x]+t}=l_{[x]+t+1},\quad p_{[x]+t}=\frac{l_{[x]+t+1}}{l_{[x]+t}},\quad q_{[x]+t}=\frac{d_{[x]+t}}{l_{[x]+t}} $$</span><span class="eqno">(2.1.5.1~4)</span></div>
+      <p class="def-text">2-2의 $l,d,p,q$ 관계가 그대로이고, 첨자만 $[x]+t$로 바뀌었을 뿐입니다. $t\ge5$이면 선택효과가 없어 그냥 $q_{x+t}$(종국)로 씁니다.</p>
+    </div>
+  </div>
+
+  <!-- 예제 2.1.5.1 -->
+  <div class="example">
+    <div class="ex-head"><span class="ex-tag">예제</span><span class="ex-id">2.1.5.1 — 선택 생존확률</span></div>
+    <p class="ex-q">1년 전에 보험에 가입하여 현재 36세인 사람이 38세에 도달할 확률을 구하시오.</p>
+    <details class="soln">
+      <summary>풀이 펼치기</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>“1년 전 가입, 현재 36세” → 35세 가입 후 1년 경과 = $[35]+1$. 38세 도달 = 2년 생존: $p_{[35]+1}\cdot p_{[35]+2}$.</span></div>
+        <div class="step"><span class="n">2</span><span>표에서 $q_{[35]+1}=1.10/1000=0.00110$, $q_{[35]+2}=1.33/1000=0.00133$.</span></div>
+        <div class="eqrow"><span>$$ p_{[35]+1}\cdot p_{[35]+2}=(1-0.00110)(1-0.00133)=0.997571 $$</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$0.997571$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 예제 2.1.5.2 -->
+  <div class="example">
+    <div class="ex-head"><span class="ex-tag">예제</span><span class="ex-id">2.1.5.2 — 선택 + 종국 혼합</span></div>
+    <p class="ex-q">30세에 보험에 가입하여 현재 32세가 된 사람이 40세까지 생존할 확률을 구하시오.</p>
+    <details class="soln">
+      <summary>풀이 펼치기</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$[30]+2$에서 40세까지 = 8년 생존: ${}_{8}p_{[30]+2}$. 앞 3년은 선택($[30]+2,+3,+4$), 나머지 5년은 종국($q_{35}\sim q_{39}$).</span></div>
+        <div class="step"><span class="n">2</span><span>선택: $q_{[30]+2}=0.00099,\ q_{[30]+3}=0.00110,\ q_{[30]+4}=0.00125$. 종국: $q_{35}=0.00141,q_{36}=0.00153,q_{37}=0.00168,q_{38}=0.00187,q_{39}=0.00210$.</span></div>
+        <div class="step"><span class="n">3</span><span>$(1-0.00099)(1-0.00110)(1-0.00125)(1-0.00141)(1-0.00153)(1-0.00168)(1-0.00187)(1-0.00210)=0.98813$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">${}_{8}p_{[30]+2}\approx0.98813$</span></div>
+      </div>
+    </details>
+  </div>
+  <div class="callout warn">
+    <span class="co-label">교재 표기 정정</span>
+    <p>위 예제 2.1.5.2의 교재 인쇄값은 $0.98911$로 나오지만, 제시된 8개 인자를 그대로 곱하면 $0.98813$입니다(반올림/오기로 보임). 계산 절차는 동일하니 <strong>곱의 법칙으로 선택→종국을 이어 곱하는 방법</strong>에 집중하세요.</p>
+  </div>
+
+  <!-- 예제 2.1.5.3 -->
+  <div class="example">
+    <div class="ex-head"><span class="ex-tag">예제</span><span class="ex-id">2.1.5.3 — 선택효과 소멸 후</span></div>
+    <p class="ex-q">32세에 가입하여 현재 40세가 된 사람에 대하여 (a) 1년 안에 사망할 확률, (b) 45세 전에 사망할 확률을 구하시오.</p>
+    <details class="soln">
+      <summary>풀이 펼치기</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">a</span><span>32세 가입 후 8년 경과($>5$년) → 선택효과 소멸, 종국표에서 찾는다. 40세 종국 사망률 $q_{40}=2.36/1000=0.00236$.</span></div>
+        <div class="step"><span class="n">b</span><span>${}_{5}q_{40}=1-{}_{5}p_{40}$, ${}_{5}p_{40}=p_{40}p_{41}p_{42}p_{43}p_{44}$ (모두 종국). $q_{40\sim44}=0.00236,0.00264,0.00295,0.00328,0.00363$.</span></div>
+        <div class="eqrow"><span>$$ {}_{5}q_{40}=1-(1-0.00236)(1-0.00264)(1-0.00295)(1-0.00328)(1-0.00363)=0.014772 $$</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">(a) $0.00236$　(b) $\approx0.014772$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ════════ 연습문제 ════════ -->
+  <div class="section-title"><span class="sno">2.5.3</span><span class="sname">직접 풀어 보기</span></div>
+
+  <!-- 출처: 창작 (선택 생존확률 기본) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 1.</span><span class="prob-meta">선택 생존</span></div>
+    <p class="prob-q">방금 40세에 보험에 가입한 사람이 42세에 도달할 확률 ${}_{2}p_{[40]}$을 구하시오. (위 선택표 이용)</p>
+    <p class="prob-hint">힌트: $q_{[40]}=1.36/1000$, $q_{[40]+1}=1.74/1000$. 곱의 법칙.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$q_{[40]}=0.00136,\ q_{[40]+1}=0.00174$.</span></div>
+        <div class="step"><span class="n">2</span><span>${}_{2}p_{[40]}=(1-0.00136)(1-0.00174)=0.996902$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$\approx0.99690$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 교재 연습문제 2.1-12(a) 변형 -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 2.</span><span class="prob-meta">교재 2.1-12 · 선택 4년 생존</span></div>
+    <p class="prob-q">41세에 보험에 가입한 사람이 45세까지 생존할 확률 ${}_{4}p_{[41]}$을 구하시오.</p>
+    <p class="prob-hint">힌트: $[41]$행의 1~4년차 사망률(1.48, 1.91, 2.41, 2.99)을 모두 $\div1000$하여 생존확률의 곱.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$q_{[41]}=0.00148,\ q_{[41]+1}=0.00191,\ q_{[41]+2}=0.00241,\ q_{[41]+3}=0.00299$ (4년 모두 선택기간 내).</span></div>
+        <div class="step"><span class="n">2</span><span>${}_{4}p_{[41]}=(1-0.00148)(1-0.00191)(1-0.00241)(1-0.00299)=0.991238$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$\approx0.99124$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 교재 본문 예시 변형 (선택↔종국 변별) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 3.</span><span class="prob-meta">변별 · 선택 vs 종국</span></div>
+    <p class="prob-q">39세의 사망률 $q_{[37]+2}$와 $q_{39}$를 표에서 각각 찾고, 어느 쪽이 더 작은지와 그 이유를 답하시오.</p>
+    <p class="prob-hint">힌트: $q_{[37]+2}$는 37세 가입 후 2년(선택 잔존), $q_{39}$는 34세 가입자가 5년 경과한 종국값(도달연령 39).</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$q_{[37]+2}$: $[37]$행 3년차 $=1.62/1000=0.00162$.</span></div>
+        <div class="step"><span class="n">2</span><span>$q_{39}$: 도달연령 39의 종국값($[34]$행 6년+) $=2.10/1000=0.00210$.</span></div>
+        <div class="step"><span class="n">3</span><span>$q_{[37]+2}=0.00162<q_{39}=0.00210$. <strong>이유:</strong> 37세 가입자는 아직 선택효과(신체검사 통과)가 남아 더 건강 → 사망률이 더 낮다.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$q_{[37]+2}=0.00162<q_{39}=0.00210$ (선택효과)</span></div>
+      </div>
+    </details>
+  </div>
+
+  <footer>학습지 No. 2-5 · 2.5 선택표 · 오창수·김경희 『최신보험수리학』 제2장 I.기초이론 §5</footer>
+</div>
+</div>
+
+<div class="screen" id="s2-종합">
+<div class="wrap">
+<a class="backlink" onclick="showScreen('home')">← 목록</a>
+
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="head">
+    <div class="head-main">
+      <p class="head-eyebrow">제2장 생존분포와 생명표 · 종합 복습</p>
+      <h1 class="head-title">제2장 종합문제</h1>
+    </div>
+    <span class="head-badge">학습지 No. 2-종합</span>
+  </div>
+
+  <!-- ════════ 안내 ════════ -->
+  <div class="callout info">
+    <span class="co-label">이 시트의 쓰임 · 제2장 기초이론 한 바퀴</span>
+    <p>2-1~2-5에서 배운 <strong>확률·생명표·생명확률·평균여명·선택표</strong>를 한 자리에서 풀어 봅니다. 시트 순서대로 10문(<strong>교재 연습문제 변형 + 기출 변형 혼합</strong>)이며, 각 문제 정답은 <strong>「정답 확인」</strong>으로 단계풀이를 봅니다. 막히면 태그(예: <span class="term">2-3</span>)의 시트로 돌아가 복습하세요.</p>
+  </div>
+
+  <!-- ════════ A. 확률·생명표·생명확률 ════════ -->
+  <div class="section-title"><span class="sno">A</span><span class="sname">확률 · 생명표 · 생명확률 (2-1 ~ 2-3)</span></div>
+
+  <!-- 출처: 창작 (2-1 표[2.1.1.1] 재사용) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 1.</span><span class="prob-meta">2-1 · 조건부확률</span></div>
+    <p class="prob-q">2-1의 표 [2.1.1.1](남 $A_1$=40, 여 $A_2$=60, 30세미만 $B_1$=35, 30세이상 $B_2$=65; 여자 중 30세 이상 40명)에서, 뽑은 사람이 <strong>여자라는 조건에서</strong> 30세 이상일 확률 $\Pr(B_2\mid A_2)$을 구하시오.</p>
+    <p class="prob-hint">힌트: 조건이 $A_2$이므로 분모는 여자 60명. $\Pr(B_2\mid A_2)=\frac{\Pr(A_2\cap B_2)}{\Pr(A_2)}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>여자 60명 중 30세 이상 40명이므로 $\Pr(B_2\mid A_2)=\frac{40}{60}=\frac{2}{3}$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$\frac{2}{3}\approx0.667$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 창작 (2-2 생명표 정의) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 2.</span><span class="prob-meta">2-2 · 생명표</span></div>
+    <p class="prob-q">$l_{40}=9{,}000$, $d_{40}=90$일 때 $l_{41}$, $p_{40}$, $q_{40}$을 구하시오.</p>
+    <p class="prob-hint">힌트: $l_{41}=l_{40}-d_{40}$, $p_{40}=\frac{l_{41}}{l_{40}}$, $q_{40}=\frac{d_{40}}{l_{40}}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$l_{41}=9{,}000-90=8{,}910$.</span></div>
+        <div class="step"><span class="n">2</span><span>$p_{40}=\frac{8{,}910}{9{,}000}=0.99$, $q_{40}=\frac{90}{9{,}000}=0.01$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$l_{41}=8{,}910$ · $p_{40}=0.99$ · $q_{40}=0.01$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 교재 연습문제 2.1-2 변형 -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 3.</span><span class="prob-meta">2-3 · 교재 2.1-2 변형</span></div>
+    <p class="prob-q">${}_{10}p_{50}=0.85$, ${}_{10}p_{60}=0.7$일 때 (a) 50세가 70세까지 생존할 확률 ${}_{20}p_{50}$, (b) 50세가 60~70세 사이에서 사망할 확률 ${}_{10|10}q_{50}$을 구하시오.</p>
+    <p class="prob-hint">힌트: (a) ${}_{20}p_{50}={}_{10}p_{50}\cdot{}_{10}p_{60}$. (b) ${}_{10|10}q_{50}={}_{10}p_{50}-{}_{20}p_{50}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">a</span><span>${}_{20}p_{50}=0.85\times0.7=0.595$.</span></div>
+        <div class="step"><span class="n">b</span><span>${}_{10|10}q_{50}=0.85-0.595=0.255$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">(a) $0.595$　(b) $0.255$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 교재 연습문제 2.1-4 변형 -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 4.</span><span class="prob-meta">2-3 · 교재 2.1-4 변형</span></div>
+    <p class="prob-q">${}_{10}p_{40}=0.9$, ${}_{10}p_{50}=0.8$, ${}_{10}p_{60}=0.6$일 때, 40세가 60~70세 사이에서 사망할 확률 ${}_{20|10}q_{40}$을 구하시오.</p>
+    <p class="prob-hint">힌트: ${}_{20|10}q_{40}={}_{20}p_{40}-{}_{30}p_{40}$. 10년 조각의 곱으로 ${}_{20}p_{40}$, ${}_{30}p_{40}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>${}_{20}p_{40}=0.9\times0.8=0.72$, ${}_{30}p_{40}=0.72\times0.6=0.432$.</span></div>
+        <div class="step"><span class="n">2</span><span>${}_{20|10}q_{40}=0.72-0.432=0.288$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$0.288$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 48회 28번 변형 -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 5.</span><span class="prob-meta">2-3 · 48회 변형</span></div>
+    <p class="prob-q">모든 $t=0,1,\cdots,9$에 대해 ${}_{t|}q_x=0.10$일 때, ${}_{3}p_{x+2}$를 구하시오.</p>
+    <p class="prob-hint">힌트: ${}_{n}p_x=1-0.1n$. ${}_{3}p_{x+2}=\frac{{}_{5}p_x}{{}_{2}p_x}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>${}_{2}p_x=1-0.2=0.8$, ${}_{5}p_x=1-0.5=0.5$.</span></div>
+        <div class="step"><span class="n">2</span><span>${}_{5}p_x={}_{2}p_x\cdot{}_{3}p_{x+2}$이므로 ${}_{3}p_{x+2}=\frac{0.5}{0.8}=0.625$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">${}_{3}p_{x+2}=0.625$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 교재 연습문제 2.1-1 변형 (2-1 독립 + 2-3) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 6.</span><span class="prob-meta">2-1·2-3 · 교재 2.1-1 변형</span></div>
+    <p class="prob-q">$A$가 10년 생존할 확률 0.9, $B$가 10년 생존할 확률 0.85, 두 사람의 사망은 독립이다. 적어도 한 사람이 10년 안에 사망할 확률을 구하시오.</p>
+    <p class="prob-hint">힌트: “적어도 한 명 사망”의 여사상은 “둘 다 생존”. 독립 → 곱.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>둘 다 생존 $=0.9\times0.85=0.765$.</span></div>
+        <div class="step"><span class="n">2</span><span>적어도 한 명 사망 $=1-0.765=0.235$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$0.235$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ════════ B. 평균여명·선택표 ════════ -->
+  <div class="section-title"><span class="sno">B</span><span class="sname">평균여명 · 선택표 (2-4 ~ 2-5)</span></div>
+
+  <!-- 출처: 교재 연습문제 2.1-9 변형 -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 7.</span><span class="prob-meta">2-4 · 교재 2.1-9 변형</span></div>
+    <p class="prob-q">아래 생명표에서 $e_{80}$과 $\stackrel{\circ}{e}_{80}$을 구하시오(UDD 가정).</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>$x$</th><th class="rt">80</th><th class="rt">81</th><th class="rt">82</th><th class="rt">83</th><th class="rt">84</th></tr></thead>
+        <tbody><tr><td>$l_x$</td><td class="rt">1000</td><td class="rt">600</td><td class="rt">300</td><td class="rt">100</td><td class="rt">0</td></tr></tbody>
+      </table>
+    </div>
+    <p class="prob-hint">힌트: $e_x=\frac{l_{x+1}+l_{x+2}+\cdots}{l_x}$, $\stackrel{\circ}{e}_x=e_x+\tfrac12$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$e_{80}=\frac{l_{81}+l_{82}+l_{83}}{l_{80}}=\frac{600+300+100}{1000}=1.0$.</span></div>
+        <div class="step"><span class="n">2</span><span>$\stackrel{\circ}{e}_{80}=1.0+0.5=1.5$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$e_{80}=1.0$ · $\stackrel{\circ}{e}_{80}=1.5$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 42회 28번 변형 -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 8.</span><span class="prob-meta">2-4 · 42회 변형</span></div>
+    <p class="prob-q">모든 나이 $x$에서 $q_x=0.2$이다. 어떤 나이 $x$의 3년 정기개산평균여명 $e_{x:\overline{3}|}$을 구하시오. (정기개산여명 $e_{x:\overline{n}|}={}_{1}p_x+{}_{2}p_x+\cdots+{}_{n}p_x$)</p>
+    <p class="prob-hint">힌트: $p_x=0.8$, ${}_{k}p_x=(0.8)^k$. 3년까지만 합.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$p_x=1-0.2=0.8$, ${}_{k}p_x=(0.8)^k$.</span></div>
+        <div class="step"><span class="n">2</span><span>$e_{x:\overline{3}|}=0.8+0.64+0.512=1.952$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$e_{x:\overline{3}|}=1.952$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 교재 연습문제 2.1-12 변형 (2-5 선택표) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 9.</span><span class="prob-meta">2-5 · 교재 2.1-12 변형</span></div>
+    <p class="prob-q">2-5의 선택표에서 42세에 보험에 가입한 사람이 44세까지 생존할 확률 ${}_{2}p_{[42]}$을 구하시오. ($[42]$행: 1년차 $1.61$, 2년차 $2.09$, 단위 1,000명당)</p>
+    <p class="prob-hint">힌트: $q_{[42]}=1.61/1000$, $q_{[42]+1}=2.09/1000$. 곱의 법칙.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$q_{[42]}=0.00161$, $q_{[42]+1}=0.00209$.</span></div>
+        <div class="step"><span class="n">2</span><span>${}_{2}p_{[42]}=(1-0.00161)(1-0.00209)=0.99630$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$\approx0.99630$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 교재 본문 예시 변형 (2-5 선택↔종국 변별) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 10.</span><span class="prob-meta">2-5 · 변별 (선택 vs 종국)</span></div>
+    <p class="prob-q">2-5 선택표에서 40세의 사망률을 두 경우로 비교하시오. (가) 방금 40세에 가입한 사람 $q_{[40]}$(1년차 $1.36$), (나) 35세 가입자가 5년 지나 도달한 종국값 $q_{40}$(=$[35]$행 6년+ $2.36$). 어느 쪽이 작은지와 이유를 답하시오.</p>
+    <p class="prob-hint">힌트: 둘 다 ÷1000. 선택효과가 남은 쪽이 더 건강 → 사망률 낮음.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$q_{[40]}=1.36/1000=0.00136$, $q_{40}=2.36/1000=0.00236$.</span></div>
+        <div class="step"><span class="n">2</span><span>$q_{[40]}<q_{40}$. <strong>이유:</strong> 방금 가입자는 신체검사 통과로 선택효과가 남아 더 건강 → 사망률이 더 낮다.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$q_{[40]}=0.00136<q_{40}=0.00236$ (선택효과)</span></div>
+      </div>
+    </details>
+  </div>
+
+  <footer>학습지 No. 2-종합 · 제2장 생존분포와 생명표 종합문제 · 교재 연습문제 2.1 + 기출 변형(42·48회)</footer>
 </div>
 </div>
 
