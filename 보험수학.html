@@ -184,6 +184,7 @@ a.card:active{background:var(--blu-bg);}
 <a class="card" onclick="showScreen('s1-8')"><div class="card-no">1-8</div><div class="card-name">확정연금 (연 m회 지급)</div><div class="card-desc">a_n^(m)=i/i^(m)·a_n·분모교체·근사식</div></a>
 <a class="card" onclick="showScreen('s1-9')"><div class="card-no">1-9</div><div class="card-name">변동연금 ① 일반식·누가·누감</div><div class="card-desc">Pa+Q항·(Ia)·(Da)·(Ia)+(Da)=(n+1)a</div></a>
 <a class="card" onclick="showScreen('s1-10')"><div class="card-no">1-10</div><div class="card-name">변동연금 ② 증가영구·복합현금흐름</div><div class="card-desc">(Ia)∞=1/id·평준+변동 분해</div></a>
+<a class="card" onclick="showScreen('s1-종합')"><div class="card-no">1-종합</div><div class="card-name">제1장 종합문제</div><div class="card-desc">1-1~1-10 핵심+기출변형 12문(접이식 정답)</div></a>
 </div>
   <div class="chap"><span class="cno">제2장</span><span class="cname">생존분포</span></div>
   <div class="grid">
@@ -2230,6 +2231,234 @@ a.card:active{background:var(--blu-bg);}
   </div>
 
   <footer>학습지 No. 1-10 · §1.8 변동연금 ② 증가영구·복합현금흐름</footer>
+</div>
+</div>
+
+<div class="screen" id="s1-종합">
+<div class="wrap">
+<a class="backlink" onclick="showScreen('home')">← 목록</a>
+
+
+  <!-- ════════ HEADER ════════ -->
+  <div class="head">
+    <div class="head-main">
+      <p class="head-eyebrow">제1장 이자론 · 종합 복습</p>
+      <h1 class="head-title">제1장 종합문제</h1>
+    </div>
+    <span class="head-badge">학습지 No. 1-종합</span>
+  </div>
+
+  <!-- ════════ 안내 ════════ -->
+  <div class="callout info">
+    <span class="co-label">이 시트의 쓰임 · 제1장 한 바퀴 점검</span>
+    <p>1-1~1-10에서 배운 <strong>이율·할인·이력·확정연금·변동연금</strong>을 한 자리에서 풀어 봅니다. 시트 순서대로 12문(<strong>기출 변형 6 + 핵심 점검 6</strong>)이며, 각 문제의 정답은 <strong>「정답 확인」을 눌러</strong> 단계풀이로 확인합니다. 막히는 문제의 태그(예: <span class="term">1-5</span>)가 가리키는 시트로 돌아가 복습하세요.</p>
+  </div>
+
+  <!-- ════════ A. 이율·할인·이력 측도 ════════ -->
+  <div class="section-title"><span class="sno">A</span><span class="sname">이율 · 할인 · 이력 측도 (1-1 ~ 1-5)</span></div>
+
+  <!-- 출처: 창작 (1-1·1-2 핵심 점검) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 1.</span><span class="prob-meta">1-1·1-2 핵심</span></div>
+    <p class="prob-q">원금 100만원을 연이율 $8\%$로 3년간 투자한다. (a) <strong>단리</strong> 종가, (b) <strong>복리</strong> 종가, (c) 복리에서 3년째 실이율 $i_3$을 구하시오.</p>
+    <p class="prob-hint">힌트: 단리 $A(t)=100(1+0.08t)$, 복리 $100(1.08)^t$. 복리의 실이율은 매년 일정.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">a</span><span>단리: $A(3)=100(1+0.08\times3)=100\times1.24=124$만원.</span></div>
+        <div class="step"><span class="n">b</span><span>복리: $A(3)=100(1.08)^3=100\times1.259712=125.97$만원.</span></div>
+        <div class="step"><span class="n">c</span><span>복리의 실이율은 매기 $i$로 일정(1-2의 성질) → $i_3=8\%$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">단리 $124$ · 복리 $125.97$만원 · $i_3=8\%$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 43회 21번 변형 (현가·할인) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 2.</span><span class="prob-meta">1-3 · 43회 변형</span></div>
+    <p class="prob-q">1년 전에 투자한 27의 현재시점 종가와, 1년 후에 지급받을 20의 현가를 더하면 48이다. 연할인율 $d$를 구하시오(단 $d>0$).</p>
+    <p class="prob-hint">힌트: $x=1+i$로 놓으면 $27x+\frac{20}{x}=48$. $d=\frac{i}{1+i}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$x=1+i$라 하면 27의 종가는 $27x$, 20의 현가는 $\frac{20}{x}$. 따라서 $27x+\frac{20}{x}=48$.</span></div>
+        <div class="step"><span class="n">2</span><span>양변에 $x$를 곱해 정리: $27x^2-48x+20=0$. 판별식 $48^2-4\cdot27\cdot20=144$, $\sqrt{144}=12$.</span></div>
+        <div class="eqrow"><span>$$ x=\frac{48\pm12}{54}=\frac{10}{9}\ \text{또는}\ \frac{2}{3} $$</span></div>
+        <div class="step"><span class="n">3</span><span>$x=1+i>1$이어야 하므로 $x=\frac{10}{9}$, 즉 $i=\frac{1}{9}$.</span></div>
+        <div class="step"><span class="n">4</span><span>$d=\frac{i}{1+i}=\frac{1/9}{10/9}=\frac{1}{10}$. (검산: $27\cdot\frac{10}{9}+20\cdot\frac{9}{10}=30+18=48$.)</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$d=0.1$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 43회 23번 변형 (단리 성질 진위) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 3.</span><span class="prob-meta">1-2 · 43회 변형</span></div>
+    <p class="prob-q">단리 $a(t)=1+it$ ($i>0$)에서 다음 중 <strong>옳지 않은 것</strong>은?<br>(1) $i_n=\frac{i}{1+i(n-1)}$　(2) $d_n=\frac{i}{1+in}$　(3) $a(t)$는 $t$의 직선이다　(4) $i_n=d_n$</p>
+    <p class="prob-hint">힌트: 실이율은 그해 <strong>초</strong> 잔액으로, 할인율은 그해 <strong>말</strong> 잔액으로 나눈다 — 분모가 다르다.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$i_n=\frac{a(n)-a(n-1)}{a(n-1)}=\frac{i}{1+i(n-1)}$ — 참.</span></div>
+        <div class="step"><span class="n">2</span><span>$d_n=\frac{a(n)-a(n-1)}{a(n)}=\frac{i}{1+in}$ — 참.</span></div>
+        <div class="step"><span class="n">3</span><span>$1+it$는 일차식이므로 그래프가 직선 — 참.</span></div>
+        <div class="step"><span class="n">4</span><span>분모가 $1+i(n-1)\neq 1+in$이므로 $i_n>d_n$($i>0$). 따라서 $i_n=d_n$은 <strong>거짓</strong>.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">(4)</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 창작 (1-4 명목↔실효 핵심) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 4.</span><span class="prob-meta">1-4 핵심</span></div>
+    <p class="prob-q">연 4회 복리의 명목이율이 $i^{(4)}=0.08$이다. (a) 연실이율 $i$, (b) 연실할인율 $d$를 구하시오.</p>
+    <p class="prob-hint">힌트: $1+i=\left(1+\frac{i^{(4)}}{4}\right)^4$, $d=1-\frac{1}{1+i}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">a</span><span>$1+i=(1+0.02)^4=(1.02)^4=1.08243$ → $i=0.08243$.</span></div>
+        <div class="step"><span class="n">b</span><span>$d=1-\frac{1}{1.08243}=1-0.92385=0.07615$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$i\approx0.0824$ · $d\approx0.0762$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 42회 21번 변형 (이력 vs 복리) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 5.</span><span class="prob-meta">1-5 · 42회 변형</span></div>
+    <p class="prob-q">계좌 A는 연복리 $i$로, 계좌 B는 이력 $\delta$로 이자가 적립된다. 각 계좌에 1을 넣고 10년이 지나니 두 계좌 모두 $e$가 되었다. $\frac{i}{\delta}$를 구하시오. (단 $e^{0.1}=1.105$)</p>
+    <p class="prob-hint">힌트: B는 $e^{10\delta}=e$, A는 $(1+i)^{10}=e$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>B: $e^{10\delta}=e^{1}$ → $10\delta=1$ → $\delta=0.1$.</span></div>
+        <div class="step"><span class="n">2</span><span>A: $(1+i)^{10}=e$ → $1+i=e^{1/10}=e^{0.1}=1.105$ → $i=0.105$.</span></div>
+        <div class="step"><span class="n">3</span><span>$\frac{i}{\delta}=\frac{0.105}{0.1}=1.05$. (항상 $i>\delta$ — 복리이율이 이력보다 큼.)</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$\frac{i}{\delta}=1.05$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- ════════ B. 확정연금·변동연금 ════════ -->
+  <div class="section-title"><span class="sno">B</span><span class="sname">확정연금 · 변동연금 (1-6 ~ 1-10)</span></div>
+
+  <!-- 출처: 창작 (1-6 기말↔기시 핵심) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 6.</span><span class="prob-meta">1-6 핵심</span></div>
+    <p class="prob-q">연 $5\%$ 복리, 10년. (a) 기말급 확정연금 현가 $a_{\overline{10}|}$, (b) 기시급 $\ddot a_{\overline{10}|}$를 구하시오. (단 $v^{10}=0.613913$)</p>
+    <p class="prob-hint">힌트: $a_{\overline{n}|}=\frac{1-v^n}{i}$, $\ddot a_{\overline{n}|}=(1+i)\,a_{\overline{n}|}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">a</span><span>$a_{\overline{10}|}=\frac{1-0.613913}{0.05}=\frac{0.386087}{0.05}=7.7217$.</span></div>
+        <div class="step"><span class="n">b</span><span>$\ddot a_{\overline{10}|}=(1+i)\,a_{\overline{10}|}=1.05\times7.7217=8.1078$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$a_{\overline{10}|}\approx7.7217$ · $\ddot a_{\overline{10}|}\approx8.1078$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 창작 (1-7 영구·거치 핵심) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 7.</span><span class="prob-meta">1-7 핵심</span></div>
+    <p class="prob-q">연 $4\%$ 복리. (a) 기말급 영구연금 현가 $a_{\overline{\infty}|}$, (b) 5년 거치 기말급 영구연금 현가 ${}_{5|}a_{\overline{\infty}|}$를 구하시오. (단 $v^{5}=0.821927$)</p>
+    <p class="prob-hint">힌트: $a_{\overline{\infty}|}=\frac{1}{i}$, 거치는 $v^{5}\cdot\frac{1}{i}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">a</span><span>$a_{\overline{\infty}|}=\frac{1}{0.04}=25$.</span></div>
+        <div class="step"><span class="n">b</span><span>${}_{5|}a_{\overline{\infty}|}=v^{5}\cdot\frac{1}{i}=0.821927\times25=20.55$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$25$ · 거치 $\approx20.55$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 42회 24번 변형 (연 m회 확정연금) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 8.</span><span class="prob-meta">1-8 · 42회 변형</span></div>
+    <p class="prob-q">이력이 $\delta=0.1$일 때, 연 2회 지급 기시급 확정연금 $\ddot a^{(2)}_{\overline{1}|}$의 값을 구하시오. (단 $e^{-0.05}=0.9512$)</p>
+    <p class="prob-hint">힌트: $\ddot a^{(m)}_{\overline{n}|}=\frac{1-v^n}{d^{(m)}}$. 또는 $\frac{1}{2}$씩 $t=0,\tfrac12$에 지급한다고 직접 계산.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$v=e^{-\delta}=e^{-0.1}=(e^{-0.05})^2=0.9512^2=0.904781$, $1-v=0.095219$.</span></div>
+        <div class="step"><span class="n">2</span><span>$1-\frac{d^{(2)}}{2}=v^{1/2}=e^{-0.05}=0.9512$ → $d^{(2)}=2(1-0.9512)=0.0976$.</span></div>
+        <div class="step"><span class="n">3</span><span>$\ddot a^{(2)}_{\overline{1}|}=\frac{1-v}{d^{(2)}}=\frac{0.095219}{0.0976}=0.9756$.</span></div>
+        <div class="step"><span class="n">4</span><span>검산(직접): 매회 $\frac12$을 $t=0,\tfrac12$에 지급 → $\frac12(1+v^{1/2})=\frac12(1+0.9512)=0.9756$. 일치.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$\ddot a^{(2)}_{\overline{1}|}\approx0.9756$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 43회 25번 변형 (누가확정연금 종가) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 9.</span><span class="prob-meta">1-9 · 43회 변형</span></div>
+    <p class="prob-q">첫 지급액이 2이고 그 이후 매년 2씩 증가하는 5년 만기 기말급 누가확정연금(지급액 $2,4,6,8,10$)이 있다. $v=0.9$일 때 이 연금의 만기(5년 말) 시점 종가를 구하시오.</p>
+    <p class="prob-hint">힌트: 각 지급액을 5년 말로 종가화해 더한다. $1+i=\frac{1}{v}=\frac{10}{9}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$1+i=\frac{1}{0.9}=\frac{10}{9}\approx1.1111$.</span></div>
+        <div class="step"><span class="n">2</span><span>종가 $=2(1+i)^4+4(1+i)^3+6(1+i)^2+8(1+i)+10$.</span></div>
+        <div class="step"><span class="n">3</span><span>$(1+i)^2=1.2346,\ (1+i)^3=1.3717,\ (1+i)^4=1.5242$.</span></div>
+        <div class="eqrow"><span>$$ 3.048+5.487+7.407+8.889+10=34.83 $$</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$\approx34.83$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 창작 (1-9 누가+누감 항등식) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 10.</span><span class="prob-meta">1-9 항등식</span></div>
+    <p class="prob-q">$n$년 만기 기말급 <strong>누가</strong>확정연금 $(Ia)_{\overline{n}|}$과 <strong>누감</strong>확정연금 $(Da)_{\overline{n}|}$의 합을 간단히 하면? 작은 수 $n=3$으로 확인하시오.</p>
+    <p class="prob-hint">힌트: 같은 해에 지급되는 두 금액을 더해 본다.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$n=3$: $(Ia)$의 지급은 $1,2,3$, $(Da)$의 지급은 $3,2,1$.</span></div>
+        <div class="step"><span class="n">2</span><span>같은 해끼리 더하면 $1{+}3=4,\ 2{+}2=4,\ 3{+}1=4$ → 매년 $(n+1)=4$로 평준.</span></div>
+        <div class="step"><span class="n">3</span><span>즉 두 연금의 합은 매년 $(n+1)$씩 받는 평준연금이므로 $(Ia)_{\overline{n}|}+(Da)_{\overline{n}|}=(n+1)\,a_{\overline{n}|}$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$(n+1)\,a_{\overline{n}|}$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 창작 (1-10 증가영구) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 11.</span><span class="prob-meta">1-10 핵심</span></div>
+    <p class="prob-q">연 $5\%$ 복리에서, 첫 지급액 1이고 매년 1씩 증가하는 기말급 <strong>증가영구연금</strong>의 현가 $(Ia)_{\overline{\infty}|}$를 구하시오.</p>
+    <p class="prob-hint">힌트: $(Ia)_{\overline{\infty}|}=\frac{1}{id}$, $d=\frac{i}{1+i}$.</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>$d=\frac{0.05}{1.05}=0.047619$.</span></div>
+        <div class="step"><span class="n">2</span><span>$(Ia)_{\overline{\infty}|}=\frac{1}{id}=\frac{1}{0.05\times0.047619}=420$. ($=\frac{1+i}{i^2}=\frac{1.05}{0.0025}=420$.)</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$420$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <!-- 출처: 42회 25번 변형 (확정연금 종가 + 미지이율) -->
+  <div class="prob">
+    <div class="prob-head"><span class="prob-no">문제 12.</span><span class="prob-meta">종합 · 42회 변형</span></div>
+    <p class="prob-q">어떤 계좌에 현재부터 $y$년까지는 매년 말 1을, $y$년부터 $2y$년까지는 매년 말 2를 복리로 납입한다. $2y$년 후 종가가 100이고 $(1+i)^{y}=3$일 때, 연이율 $i$를 구하시오.</p>
+    <p class="prob-hint">힌트: $s_{\overline{n}|}=\frac{(1+i)^n-1}{i}$. ‘1을 $2y$년 + 추가 1을 뒤 $y$년’으로 분해(2 = 1 + 1).</p>
+    <details class="soln">
+      <summary>정답 확인</summary>
+      <div class="soln-body">
+        <div class="step"><span class="n">1</span><span>매년 1을 $2y$년 납입한 종가: $s_{\overline{2y}|}=\frac{(1+i)^{2y}-1}{i}=\frac{3^2-1}{i}=\frac{8}{i}$.</span></div>
+        <div class="step"><span class="n">2</span><span>뒤 $y$년에 1씩 추가 납입(2=1+1)한 종가: $s_{\overline{y}|}=\frac{(1+i)^{y}-1}{i}=\frac{3-1}{i}=\frac{2}{i}$.</span></div>
+        <div class="step"><span class="n">3</span><span>합 $=\frac{8}{i}+\frac{2}{i}=\frac{10}{i}=100$ → $i=\frac{10}{100}=0.10$.</span></div>
+        <div class="ans"><span class="lbl">Answer</span><span class="val">$i=0.10$</span></div>
+      </div>
+    </details>
+  </div>
+
+  <div class="callout info">
+    <span class="co-label">시험 계산기 메모 (JS-40B)</span>
+    <p>이력·연속 계산의 $e^{\pm}$ 값(문제 5의 $e^{0.1}$, 문제 8의 $e^{-0.05}$)과 긴 거듭제곱(문제 6의 $v^{10}$, 문제 7의 $v^{5}$)은 시험 계산기로 직접 못 구하므로 <strong>지문에 주어집니다</strong> — 기출과 같은 방식입니다. 그 값을 받아 사칙연산만 하면 됩니다.</p>
+  </div>
+
+  <footer>학습지 No. 1-종합 · 제1장 이자론 종합문제 · 기출 변형(41~49회) + 핵심 점검</footer>
 </div>
 </div>
 
